@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -21,6 +21,7 @@
       --accent-soft: #DDE8E1;
       --border: #E7E1D8;
       --card: #FFFCF7;
+      --warm: #C89B6D;
     }
 
     * {
@@ -33,102 +34,134 @@
 
     body {
       margin: 0;
-      font-family: "Plus Jakarta Sans", sans-serif;
-      background: var(--bg);
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(110, 140, 132, 0.16), transparent 34rem),
+        radial-gradient(circle at 12% 22%, rgba(200, 155, 109, 0.10), transparent 28rem),
+        var(--bg);
       color: var(--text);
     }
 
     main,
-    .topbar-inner {
+    .topbar {
       width: min(1080px, calc(100% - 40px));
       margin: 0 auto;
     }
 
     .topbar {
-      padding: 28px 0;
+      padding-top: 28px;
+    }
+
+    .topbar-inner {
+      background: rgba(255, 252, 247, 0.78);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 18px 24px;
+      box-shadow: 0 20px 60px rgba(30, 41, 51, 0.05);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 18px;
     }
 
     .logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: linear-gradient(145deg, #7E9A8E, #667F75);
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #8CA497, #70877C);
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: -0.04em;
-      box-shadow: 0 6px 24px rgba(110, 140, 132, 0.18);
+      box-shadow: 0 12px 36px rgba(110, 140, 132, 0.18);
     }
 
-    .brand span {
-      font-size: 1rem;
+    .logo::before {
+      content: "S";
+      font-family: "Sora", sans-serif;
+      font-size: 1.55rem;
       font-weight: 700;
-      color: #3D4A54;
+      color: white;
+      position: absolute;
+      top: 12px;
+      letter-spacing: -0.08em;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: 14px;
+      width: 18px;
+      height: 3px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-title {
+      font-family: "Sora", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #25313A;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
     }
 
     .hero {
-      min-height: 78vh;
+      min-height: 76vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      padding: 60px 0 90px;
+      padding: 72px 0 92px;
       position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -250px;
-      right: -150px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(126, 154, 142, 0.18), transparent 65%);
-      pointer-events: none;
     }
 
     .eyebrow {
       color: var(--accent-dark);
       font-weight: 700;
       margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
     }
 
     h1,
     h2,
     h3 {
-      font-family: "Manrope", sans-serif;
+      font-family: "Sora", sans-serif;
       margin: 0;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.06em;
     }
 
     h1 {
-      font-size: clamp(3.1rem, 8.5vw, 6.6rem);
-      line-height: 0.95;
-      max-width: 900px;
-      position: relative;
-      z-index: 1;
+      font-size: clamp(3rem, 8.2vw, 6.45rem);
+      line-height: 0.98;
+      max-width: 930px;
     }
 
     .hero p {
-      font-size: clamp(1.12rem, 2vw, 1.4rem);
+      font-size: clamp(1.12rem, 2vw, 1.38rem);
       line-height: 1.75;
       color: var(--muted);
       max-width: 650px;
       margin: 28px 0 34px;
-      position: relative;
-      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .button {
@@ -139,20 +172,23 @@
       border-radius: 999px;
       text-decoration: none;
       font-weight: 700;
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 14px 34px rgba(110, 140, 132, 0.20);
     }
 
     .button:hover {
       background: var(--accent-dark);
     }
 
+    .soft-link {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
     .note {
       margin-top: 18px;
       color: var(--muted);
       font-size: 0.95rem;
-      position: relative;
-      z-index: 1;
     }
 
     .cards {
@@ -163,15 +199,31 @@
     }
 
     .card {
-      background: var(--card);
+      background: rgba(255, 252, 247, 0.82);
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 26px;
       padding: 28px;
       box-shadow: 0 18px 50px rgba(30, 41, 51, 0.04);
     }
 
+    .card-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      margin-bottom: 18px;
+    }
+
+    .card:nth-child(2) .card-mark {
+      background: rgba(200, 155, 109, 0.18);
+    }
+
+    .card:nth-child(3) .card-mark {
+      background: rgba(110, 140, 132, 0.18);
+    }
+
     .card h3 {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       margin-bottom: 12px;
       letter-spacing: -0.04em;
     }
@@ -185,11 +237,11 @@
     .why {
       border-top: 1px solid var(--border);
       padding: 80px 0;
-      max-width: 760px;
+      max-width: 780px;
     }
 
     .why h2 {
-      font-size: clamp(2rem, 5vw, 3.7rem);
+      font-size: clamp(2rem, 5vw, 3.6rem);
       margin-bottom: 24px;
     }
 
@@ -208,27 +260,45 @@
 
     @media (max-width: 780px) {
       main,
-      .topbar-inner {
+      .topbar {
         width: min(100% - 32px, 1080px);
       }
 
       .topbar {
-        padding: 22px 0;
+        padding-top: 18px;
+      }
+
+      .topbar-inner {
+        padding: 16px;
+        border-radius: 24px;
+      }
+
+      .logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 18px;
+      }
+
+      .logo::before {
+        top: 9px;
+      }
+
+      .logo::after {
+        bottom: 12px;
+      }
+
+      .brand-sub {
+        display: none;
       }
 
       .hero {
         min-height: auto;
-        padding: 70px 0 70px;
+        padding: 72px 0 70px;
       }
 
       .cards {
         grid-template-columns: 1fr;
         padding-bottom: 70px;
-      }
-
-      .logo {
-        width: 42px;
-        height: 42px;
       }
     }
   </style>
@@ -238,8 +308,11 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo">SL</div>
-        <span>Project Soft Landing</span>
+        <div class="logo"></div>
+        <div class="brand-text">
+          <div class="brand-title">Project Soft Landing</div>
+          <div class="brand-sub">Helpful tools for difficult moments</div>
+        </div>
       </div>
     </div>
   </header>
@@ -247,36 +320,48 @@
   <main>
     <section class="hero">
       <div class="eyebrow">Private. Simple. No account required.</div>
+
       <h1>Helpful tools for difficult moments.</h1>
+
       <p>
         A calm place for small next steps in recovery, sobriety, and the hard moments that come with being human.
       </p>
-      <a class="button" href="#tools">Explore Tools</a>
+
+      <div class="hero-actions">
+        <a class="button" href="#tools">Explore Tools</a>
+        <a class="soft-link" href="#why">Why this exists</a>
+      </div>
+
       <div class="note">Built for the moments when a softer landing would help.</div>
     </section>
 
     <section class="cards" id="tools">
       <div class="card">
+        <div class="card-mark"></div>
         <h3>Cravings</h3>
         <p>For moments that feel urgent, overwhelming, or hard to sit with.</p>
       </div>
 
       <div class="card">
+        <div class="card-mark"></div>
         <h3>Reflection</h3>
         <p>For when your thoughts feel noisy and you need a softer place to sort them.</p>
       </div>
 
       <div class="card">
+        <div class="card-mark"></div>
         <h3>Next Step</h3>
         <p>For when you do not need a whole plan; you just need the next right move.</p>
       </div>
     </section>
 
-    <section class="why">
+    <section class="why" id="why">
       <h2>Why this exists</h2>
+
       <p>
         Recovery is not always shaped by dramatic turning points. Sometimes it is shaped quietly; late at night, after a hard conversation, during boredom, shame, uncertainty, or exhaustion.
       </p>
+
       <p>
         Project Soft Landing exists to create small moments of support when people need them.
       </p>
