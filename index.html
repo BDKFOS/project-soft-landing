@@ -1,375 +1,953 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Project Soft Landing</title>
-  <meta name="description" content="Helpful tools for difficult moments in recovery, sobriety, and everyday life." />
+<title>Project Soft Landing</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta
+name="description"
+content="Helpful tools for difficult moments."
+/>
 
-  <style>
-    :root {
-      --bg: #F7F4EF;
-      --text: #1E2933;
-      --muted: #667085;
-      --accent: #6E8C84;
-      --accent-dark: #5E7A73;
-      --accent-soft: #DDE8E1;
-      --border: #E7E1D8;
-      --card: #FFFCF7;
-      --warm: #C89B6D;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    * {
-      box-sizing: border-box;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    html {
-      scroll-behavior: smooth;
-    }
+<style>
 
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(110, 140, 132, 0.16), transparent 34rem),
-        radial-gradient(circle at 12% 22%, rgba(200, 155, 109, 0.10), transparent 28rem),
-        var(--bg);
-      color: var(--text);
-    }
+:root{
 
-    main,
-    .topbar {
-      width: min(1080px, calc(100% - 40px));
-      margin: 0 auto;
-    }
+--bg:#F8F5F0;
+--text:#1E2933;
+--muted:#667085;
 
-    .topbar {
-      padding-top: 28px;
-    }
+--sage:#7E9A8E;
+--sage-dark:#667F75;
 
-    .topbar-inner {
-      background: rgba(255, 252, 247, 0.78);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 18px 24px;
-      box-shadow: 0 20px 60px rgba(30, 41, 51, 0.05);
-    }
+--warm:#EED9C2;
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
+--card:#FFFCF8;
 
-    .logo {
-      width: 58px;
-      height: 58px;
-      border-radius: 20px;
-      background: linear-gradient(145deg, #8CA497, #70877C);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 12px 36px rgba(110, 140, 132, 0.18);
-    }
+--border:#E7E1D8;
 
-    .logo::before {
-      content: "S";
-      font-family: "Sora", sans-serif;
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: white;
-      position: absolute;
-      top: 12px;
-      letter-spacing: -0.08em;
-    }
+}
 
-    .logo::after {
-      content: "";
-      position: absolute;
-      bottom: 14px;
-      width: 18px;
-      height: 3px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.75);
-    }
+*{
+box-sizing:border-box;
+}
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    .brand-title {
-      font-family: "Sora", sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: #25313A;
-      letter-spacing: -0.03em;
-    }
+body{
 
-    .brand-sub {
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
+margin:0;
 
-    .hero {
-      min-height: 76vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 72px 0 92px;
-      position: relative;
-    }
+font-family:
+"Inter",
+sans-serif;
 
-    .eyebrow {
-      color: var(--accent-dark);
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
+background:
 
-    h1,
-    h2,
-    h3 {
-      font-family: "Sora", sans-serif;
-      margin: 0;
-      letter-spacing: -0.06em;
-    }
+radial-gradient(
+circle at top left,
+rgba(238,217,194,.35),
+transparent 40%
+),
 
-    h1 {
-      font-size: clamp(3rem, 8.2vw, 6.45rem);
-      line-height: 0.98;
-      max-width: 930px;
-    }
+radial-gradient(
+circle at bottom right,
+rgba(126,154,142,.12),
+transparent 40%
+),
 
-    .hero p {
-      font-size: clamp(1.12rem, 2vw, 1.38rem);
-      line-height: 1.75;
-      color: var(--muted);
-      max-width: 650px;
-      margin: 28px 0 34px;
-    }
+var(--bg);
 
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+color:var(--text);
 
-    .button {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      padding: 14px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      box-shadow: 0 14px 34px rgba(110, 140, 132, 0.20);
-    }
+}
 
-    .button:hover {
-      background: var(--accent-dark);
-    }
+main,
+.topbar{
 
-    .soft-link {
-      color: var(--accent-dark);
-      font-weight: 700;
-      text-decoration: none;
-    }
+width:
+min(
+1120px,
+calc(100% - 48px)
+);
 
-    .note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+margin:auto;
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      padding: 40px 0 90px;
-    }
+}
 
-    .card {
-      background: rgba(255, 252, 247, 0.82);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 28px;
-      box-shadow: 0 18px 50px rgba(30, 41, 51, 0.04);
-    }
+/* HEADER */
 
-    .card-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
-      background: var(--accent-soft);
-      margin-bottom: 18px;
-    }
+.topbar{
 
-    .card:nth-child(2) .card-mark {
-      background: rgba(200, 155, 109, 0.18);
-    }
+padding:
+38px
+0
+18px;
 
-    .card:nth-child(3) .card-mark {
-      background: rgba(110, 140, 132, 0.18);
-    }
+}
 
-    .card h3 {
-      font-size: 1.35rem;
-      margin-bottom: 12px;
-      letter-spacing: -0.04em;
-    }
+.topbar-inner{
 
-    .card p {
-      color: var(--muted);
-      line-height: 1.65;
-      margin: 0;
-    }
+background:
 
-    .why {
-      border-top: 1px solid var(--border);
-      padding: 80px 0;
-      max-width: 780px;
-    }
+rgba(
+255,
+252,
+248,
+.82
+);
 
-    .why h2 {
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      margin-bottom: 24px;
-    }
+backdrop-filter:
 
-    .why p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.85;
-    }
+blur(
+16px
+);
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0 40px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+border:
 
-    @media (max-width: 780px) {
-      main,
-      .topbar {
-        width: min(100% - 32px, 1080px);
-      }
+1px
+solid
+var(--border);
 
-      .topbar {
-        padding-top: 18px;
-      }
+border-radius:
 
-      .topbar-inner {
-        padding: 16px;
-        border-radius: 24px;
-      }
+34px;
 
-      .logo {
-        width: 50px;
-        height: 50px;
-        border-radius: 18px;
-      }
+padding:
 
-      .logo::before {
-        top: 9px;
-      }
+22px
+28px;
 
-      .logo::after {
-        bottom: 12px;
-      }
+box-shadow:
 
-      .brand-sub {
-        display: none;
-      }
+0
+24px
+80px
+rgba(
+30,
+41,
+51,
+.05
+);
 
-      .hero {
-        min-height: auto;
-        padding: 72px 0 70px;
-      }
+}
 
-      .cards {
-        grid-template-columns: 1fr;
-        padding-bottom: 70px;
-      }
-    }
-  </style>
+.brand{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+.logo{
+
+width:72px;
+
+height:72px;
+
+border-radius:24px;
+
+background:
+
+linear-gradient(
+145deg,
+#8BA395,
+#6F867A
+);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:white;
+
+font-family:
+"Sora",
+sans-serif;
+
+font-size:
+
+2rem;
+
+font-weight:
+
+600;
+
+letter-spacing:
+
+-.10em;
+
+box-shadow:
+
+0
+16px
+40px
+rgba(
+110,
+140,
+132,
+.22
+);
+
+}
+
+.brand-title{
+
+font-family:
+"Sora",
+sans-serif;
+
+font-size:
+
+1.7rem;
+
+font-weight:
+
+700;
+
+letter-spacing:
+
+-.05em;
+
+}
+
+.brand-sub{
+
+margin-top:
+
+4px;
+
+font-size:
+
+1rem;
+
+color:
+
+var(--muted);
+
+}
+
+/* HERO */
+
+.hero{
+
+min-height:
+
+74vh;
+
+display:
+
+flex;
+
+flex-direction:
+
+column;
+
+justify-content:
+
+center;
+
+padding:
+
+80px
+0
+100px;
+
+position:
+
+relative;
+
+overflow:
+
+hidden;
+
+}
+
+.hero::after{
+
+content:"";
+
+position:absolute;
+
+right:-150px;
+
+top:50px;
+
+width:620px;
+
+height:620px;
+
+background:
+
+radial-gradient(
+circle,
+rgba(
+126,
+154,
+142,
+.16
+),
+transparent
+70%
+);
+
+border-radius:
+
+50%;
+
+}
+
+.leaf{
+
+position:absolute;
+
+right:40px;
+
+top:140px;
+
+font-size:
+
+520px;
+
+color:
+
+rgba(
+126,
+154,
+142,
+.08
+);
+
+line-height:
+
+1;
+
+pointer-events:none;
+
+}
+
+.eyebrow{
+
+color:
+
+var(--sage-dark);
+
+font-weight:
+
+700;
+
+letter-spacing:
+
+.12em;
+
+font-size:
+
+.95rem;
+
+}
+
+h1{
+
+font-family:
+"Sora",
+sans-serif;
+
+font-size:
+
+clamp(
+3.8rem,
+8vw,
+6.8rem
+);
+
+line-height:
+
+.95;
+
+letter-spacing:
+
+-.08em;
+
+max-width:
+
+760px;
+
+margin:
+
+26px
+0;
+
+position:relative;
+
+z-index:1;
+
+}
+
+.hero p{
+
+font-size:
+
+1.55rem;
+
+line-height:
+
+1.65;
+
+max-width:
+
+760px;
+
+color:
+
+var(--muted);
+
+margin-bottom:
+
+44px;
+
+position:relative;
+
+z-index:1;
+
+}
+
+.actions{
+
+display:flex;
+
+align-items:center;
+
+gap:28px;
+
+position:relative;
+
+z-index:1;
+
+}
+
+.button{
+
+background:
+
+linear-gradient(
+145deg,
+#8BA395,
+#6F867A
+);
+
+color:white;
+
+padding:
+
+18px
+34px;
+
+border-radius:
+
+999px;
+
+text-decoration:none;
+
+font-weight:
+
+700;
+
+box-shadow:
+
+0
+16px
+36px
+rgba(
+110,
+140,
+132,
+.18
+);
+
+}
+
+.link{
+
+font-weight:
+
+600;
+
+color:
+
+var(--sage-dark);
+
+text-decoration:none;
+
+}
+
+.note{
+
+display:flex;
+
+gap:14px;
+
+align-items:center;
+
+margin-top:
+
+40px;
+
+color:
+
+var(--muted);
+
+}
+
+.note-icon{
+
+width:42px;
+
+height:42px;
+
+border-radius:50%;
+
+background:
+
+#EFE8DE;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+/* CARDS */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(
+3,
+1fr
+);
+
+gap:
+
+20px;
+
+padding-bottom:
+
+90px;
+
+}
+
+.card{
+
+background:
+
+var(--card);
+
+border:
+
+1px
+solid
+var(--border);
+
+border-radius:
+
+28px;
+
+padding:
+
+34px;
+
+box-shadow:
+
+0
+12px
+40px
+rgba(
+30,
+41,
+51,
+.03
+);
+
+}
+
+.icon{
+
+width:74px;
+
+height:74px;
+
+border-radius:50%;
+
+margin-bottom:22px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:2rem;
+
+}
+
+.card:nth-child(1)
+.icon{
+background:#E6ECE0;
+}
+
+.card:nth-child(2)
+.icon{
+background:#F7E5D4;
+}
+
+.card:nth-child(3)
+.icon{
+background:#E7EFE8;
+}
+
+.card h3{
+
+font-family:
+"Sora";
+
+font-size:
+
+2rem;
+
+margin-bottom:
+
+18px;
+
+}
+
+.card p{
+
+color:
+
+var(--muted);
+
+line-height:
+
+1.8;
+
+}
+
+/* WHY */
+
+.why{
+
+display:grid;
+
+grid-template-columns:
+
+320px
+1fr;
+
+gap:
+
+60px;
+
+padding:
+
+90px
+0;
+
+border-top:
+
+1px
+solid
+var(--border);
+
+}
+
+.why-title{
+
+font-family:
+"Sora";
+
+font-size:
+
+3rem;
+
+line-height:
+
+1;
+
+}
+
+.why-copy{
+
+font-size:
+
+1.25rem;
+
+line-height:
+
+1.9;
+
+color:
+
+var(--muted);
+
+}
+
+footer{
+
+padding:
+
+36px
+0
+60px;
+
+border-top:
+
+1px
+solid
+var(--border);
+
+display:flex;
+
+align-items:center;
+
+gap:
+
+20px;
+
+color:
+
+var(--muted);
+
+}
+
+@media(max-width:900px){
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.why{
+grid-template-columns:1fr;
+}
+
+.hero{
+min-height:auto;
+}
+
+.leaf{
+display:none;
+}
+
+h1{
+font-size:3.6rem;
+}
+
+.hero p{
+font-size:1.2rem;
+}
+
+.brand-title{
+font-size:1.25rem;
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="logo"></div>
-        <div class="brand-text">
-          <div class="brand-title">Project Soft Landing</div>
-          <div class="brand-sub">Helpful tools for difficult moments</div>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow">Private. Simple. No account required.</div>
+<header class="topbar">
 
-      <h1>Helpful tools for difficult moments.</h1>
+<div class="topbar-inner">
 
-      <p>
-        A calm place for small next steps in recovery, sobriety, and the hard moments that come with being human.
-      </p>
+<div class="brand">
 
-      <div class="hero-actions">
-        <a class="button" href="#tools">Explore Tools</a>
-        <a class="soft-link" href="#why">Why this exists</a>
-      </div>
+<div class="logo">
+SL
+</div>
 
-      <div class="note">Built for the moments when a softer landing would help.</div>
-    </section>
+<div>
 
-    <section class="cards" id="tools">
-      <div class="card">
-        <div class="card-mark"></div>
-        <h3>Cravings</h3>
-        <p>For moments that feel urgent, overwhelming, or hard to sit with.</p>
-      </div>
+<div class="brand-title">
+Project Soft Landing
+</div>
 
-      <div class="card">
-        <div class="card-mark"></div>
-        <h3>Reflection</h3>
-        <p>For when your thoughts feel noisy and you need a softer place to sort them.</p>
-      </div>
+<div class="brand-sub">
+Helpful tools for difficult moments
+</div>
 
-      <div class="card">
-        <div class="card-mark"></div>
-        <h3>Next Step</h3>
-        <p>For when you do not need a whole plan; you just need the next right move.</p>
-      </div>
-    </section>
+</div>
 
-    <section class="why" id="why">
-      <h2>Why this exists</h2>
+</div>
 
-      <p>
-        Recovery is not always shaped by dramatic turning points. Sometimes it is shaped quietly; late at night, after a hard conversation, during boredom, shame, uncertainty, or exhaustion.
-      </p>
+</div>
 
-      <p>
-        Project Soft Landing exists to create small moments of support when people need them.
-      </p>
-    </section>
+</header>
 
-    <footer>
-      Project Soft Landing · Built with care.
-    </footer>
-  </main>
+<main>
+
+<section class="hero">
+
+<div class="leaf">
+🌿
+</div>
+
+<div class="eyebrow">
+PRIVATE. SIMPLE. NO ACCOUNT REQUIRED.
+</div>
+
+<h1>
+Helpful tools for difficult moments.
+</h1>
+
+<p>
+A calm place for small next steps in recovery, sobriety, and the hard moments that come with being human.
+</p>
+
+<div class="actions">
+
+<a
+class="button"
+href="#tools">
+
+Explore Tools →
+
+</a>
+
+<a
+class="link"
+href="#why">
+
+Why this exists
+
+</a>
+
+</div>
+
+<div class="note">
+
+<div class="note-icon">
+🌱
+</div>
+
+Built for the moments when a softer landing would help.
+
+</div>
+
+</section>
+
+<section
+class="cards"
+id="tools">
+
+<div class="card">
+
+<div class="icon">
+🌱
+</div>
+
+<h3>
+Cravings
+</h3>
+
+<p>
+For moments that feel urgent, overwhelming, or hard to sit with.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">
+🌀
+</div>
+
+<h3>
+Reflection
+</h3>
+
+<p>
+For when your thoughts feel noisy and you need a softer place to sort them.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">
+↗
+</div>
+
+<h3>
+Next Step
+</h3>
+
+<p>
+For when you do not need a whole plan; you just need the next right move.
+</p>
+
+</div>
+
+</section>
+
+<section
+class="why"
+id="why">
+
+<div class="why-title">
+Why this exists
+</div>
+
+<div class="why-copy">
+
+<p>
+Recovery is not always shaped by dramatic turning points.
+</p>
+
+<p>
+Sometimes it is shaped quietly; late at night, after difficult conversations, during boredom, shame, uncertainty, or exhaustion.
+</p>
+
+<p>
+Project Soft Landing exists to create small moments of support when people need them.
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="logo">
+SL
+</div>
+
+Project Soft Landing · Built with care.
+
+</footer>
+
+</main>
+
 </body>
+
 </html>
