@@ -105,23 +105,31 @@
     }
 
     .hero-wrap::after {
-      content: "";
-      position: absolute;
-      right: 40px;
-      top: 110px;
-      width: 270px;
-      height: 520px;
-      opacity: .28;
-      background:
-        radial-gradient(ellipse at 50% 8%, #78927e 0 18px, transparent 19px),
-        radial-gradient(ellipse at 22% 22%, #78927e 0 25px, transparent 26px),
-        radial-gradient(ellipse at 72% 28%, #78927e 0 28px, transparent 29px),
-        radial-gradient(ellipse at 35% 45%, #78927e 0 35px, transparent 36px),
-        radial-gradient(ellipse at 83% 52%, #78927e 0 34px, transparent 35px),
-        radial-gradient(ellipse at 48% 70%, #78927e 0 42px, transparent 43px);
-      filter: blur(.2px);
-      transform: rotate(-18deg);
-    }
+  content: "";
+
+  position: absolute;
+
+  right: -180px;
+  bottom: -120px;
+
+  width: 720px;
+  height: 720px;
+
+  border-radius: 50%;
+
+  background:
+
+  radial-gradient(
+    circle,
+    rgba(111,141,122,.10),
+    rgba(111,141,122,.03) 45%,
+    transparent 72%
+  );
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
 
     .hero {
       position: relative;
