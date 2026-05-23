@@ -1,953 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Project Soft Landing</title>
-
-<meta
-name="description"
-content="Helpful tools for difficult moments."
-/>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
-
---bg:#F8F5F0;
---text:#1E2933;
---muted:#667085;
-
---sage:#7E9A8E;
---sage-dark:#667F75;
-
---warm:#EED9C2;
-
---card:#FFFCF8;
-
---border:#E7E1D8;
-
-}
-
-*{
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-
-margin:0;
-
-font-family:
-"Inter",
-sans-serif;
-
-background:
-
-radial-gradient(
-circle at top left,
-rgba(238,217,194,.35),
-transparent 40%
-),
-
-radial-gradient(
-circle at bottom right,
-rgba(126,154,142,.12),
-transparent 40%
-),
-
-var(--bg);
-
-color:var(--text);
-
-}
-
-main,
-.topbar{
-
-width:
-min(
-1120px,
-calc(100% - 48px)
-);
-
-margin:auto;
-
-}
-
-/* HEADER */
-
-.topbar{
-
-padding:
-38px
-0
-18px;
-
-}
-
-.topbar-inner{
-
-background:
-
-rgba(
-255,
-252,
-248,
-.82
-);
-
-backdrop-filter:
-
-blur(
-16px
-);
-
-border:
-
-1px
-solid
-var(--border);
-
-border-radius:
-
-34px;
-
-padding:
-
-22px
-28px;
-
-box-shadow:
-
-0
-24px
-80px
-rgba(
-30,
-41,
-51,
-.05
-);
-
-}
-
-.brand{
-
-display:flex;
-
-align-items:center;
-
-gap:18px;
-
-}
-
-.logo{
-
-width:72px;
-
-height:72px;
-
-border-radius:24px;
-
-background:
-
-linear-gradient(
-145deg,
-#8BA395,
-#6F867A
-);
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-color:white;
-
-font-family:
-"Sora",
-sans-serif;
-
-font-size:
-
-2rem;
-
-font-weight:
-
-600;
-
-letter-spacing:
-
--.10em;
-
-box-shadow:
-
-0
-16px
-40px
-rgba(
-110,
-140,
-132,
-.22
-);
-
-}
-
-.brand-title{
-
-font-family:
-"Sora",
-sans-serif;
-
-font-size:
-
-1.7rem;
-
-font-weight:
-
-700;
-
-letter-spacing:
-
--.05em;
-
-}
-
-.brand-sub{
-
-margin-top:
-
-4px;
-
-font-size:
-
-1rem;
-
-color:
-
-var(--muted);
-
-}
-
-/* HERO */
-
-.hero{
-
-min-height:
-
-74vh;
-
-display:
-
-flex;
-
-flex-direction:
-
-column;
-
-justify-content:
-
-center;
-
-padding:
-
-80px
-0
-100px;
-
-position:
-
-relative;
-
-overflow:
-
-hidden;
-
-}
-
-.hero::after{
-
-content:"";
-
-position:absolute;
-
-right:-150px;
-
-top:50px;
-
-width:620px;
-
-height:620px;
-
-background:
-
-radial-gradient(
-circle,
-rgba(
-126,
-154,
-142,
-.16
-),
-transparent
-70%
-);
-
-border-radius:
-
-50%;
-
-}
-
-.leaf{
-
-position:absolute;
-
-right:40px;
-
-top:140px;
-
-font-size:
-
-520px;
-
-color:
-
-rgba(
-126,
-154,
-142,
-.08
-);
-
-line-height:
-
-1;
-
-pointer-events:none;
-
-}
-
-.eyebrow{
-
-color:
-
-var(--sage-dark);
-
-font-weight:
-
-700;
-
-letter-spacing:
-
-.12em;
-
-font-size:
-
-.95rem;
-
-}
-
-h1{
-
-font-family:
-"Sora",
-sans-serif;
-
-font-size:
-
-clamp(
-3.8rem,
-8vw,
-6.8rem
-);
-
-line-height:
-
-.95;
-
-letter-spacing:
-
--.08em;
-
-max-width:
-
-760px;
-
-margin:
-
-26px
-0;
-
-position:relative;
-
-z-index:1;
-
-}
-
-.hero p{
-
-font-size:
-
-1.55rem;
-
-line-height:
-
-1.65;
-
-max-width:
-
-760px;
-
-color:
-
-var(--muted);
-
-margin-bottom:
-
-44px;
-
-position:relative;
-
-z-index:1;
-
-}
-
-.actions{
-
-display:flex;
-
-align-items:center;
-
-gap:28px;
-
-position:relative;
-
-z-index:1;
-
-}
-
-.button{
-
-background:
-
-linear-gradient(
-145deg,
-#8BA395,
-#6F867A
-);
-
-color:white;
-
-padding:
-
-18px
-34px;
-
-border-radius:
-
-999px;
-
-text-decoration:none;
-
-font-weight:
-
-700;
-
-box-shadow:
-
-0
-16px
-36px
-rgba(
-110,
-140,
-132,
-.18
-);
-
-}
-
-.link{
-
-font-weight:
-
-600;
-
-color:
-
-var(--sage-dark);
-
-text-decoration:none;
-
-}
-
-.note{
-
-display:flex;
-
-gap:14px;
-
-align-items:center;
-
-margin-top:
-
-40px;
-
-color:
-
-var(--muted);
-
-}
-
-.note-icon{
-
-width:42px;
-
-height:42px;
-
-border-radius:50%;
-
-background:
-
-#EFE8DE;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-}
-
-/* CARDS */
-
-.cards{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(
-3,
-1fr
-);
-
-gap:
-
-20px;
-
-padding-bottom:
-
-90px;
-
-}
-
-.card{
-
-background:
-
-var(--card);
-
-border:
-
-1px
-solid
-var(--border);
-
-border-radius:
-
-28px;
-
-padding:
-
-34px;
-
-box-shadow:
-
-0
-12px
-40px
-rgba(
-30,
-41,
-51,
-.03
-);
-
-}
-
-.icon{
-
-width:74px;
-
-height:74px;
-
-border-radius:50%;
-
-margin-bottom:22px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:2rem;
-
-}
-
-.card:nth-child(1)
-.icon{
-background:#E6ECE0;
-}
-
-.card:nth-child(2)
-.icon{
-background:#F7E5D4;
-}
-
-.card:nth-child(3)
-.icon{
-background:#E7EFE8;
-}
-
-.card h3{
-
-font-family:
-"Sora";
-
-font-size:
-
-2rem;
-
-margin-bottom:
-
-18px;
-
-}
-
-.card p{
-
-color:
-
-var(--muted);
-
-line-height:
-
-1.8;
-
-}
-
-/* WHY */
-
-.why{
-
-display:grid;
-
-grid-template-columns:
-
-320px
-1fr;
-
-gap:
-
-60px;
-
-padding:
-
-90px
-0;
-
-border-top:
-
-1px
-solid
-var(--border);
-
-}
-
-.why-title{
-
-font-family:
-"Sora";
-
-font-size:
-
-3rem;
-
-line-height:
-
-1;
-
-}
-
-.why-copy{
-
-font-size:
-
-1.25rem;
-
-line-height:
-
-1.9;
-
-color:
-
-var(--muted);
-
-}
-
-footer{
-
-padding:
-
-36px
-0
-60px;
-
-border-top:
-
-1px
-solid
-var(--border);
-
-display:flex;
-
-align-items:center;
-
-gap:
-
-20px;
-
-color:
-
-var(--muted);
-
-}
-
-@media(max-width:900px){
-
-.cards{
-grid-template-columns:1fr;
-}
-
-.why{
-grid-template-columns:1fr;
-}
-
-.hero{
-min-height:auto;
-}
-
-.leaf{
-display:none;
-}
-
-h1{
-font-size:3.6rem;
-}
-
-.hero p{
-font-size:1.2rem;
-}
-
-.brand-title{
-font-size:1.25rem;
-}
-
-}
-
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Project Soft Landing</title>
+  <meta name="description" content="Helpful tools for difficult moments in recovery, sobriety, and everyday life." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --panel: #fffdf8;
+      --text: #202428;
+      --muted: #5f666d;
+      --sage: #6f8d7a;
+      --sage-dark: #55735f;
+      --sage-soft: #dfe8dc;
+      --peach-soft: #f3dcc4;
+      --border: #dfd6ca;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 7% 8%, rgba(220, 169, 111, .22), transparent 260px),
+        radial-gradient(circle at 93% 20%, rgba(119, 150, 129, .13), transparent 360px),
+        var(--bg);
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      margin-top: 42px;
+      background: rgba(255, 253, 248, .88);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 26px 34px;
+      box-shadow: 0 22px 70px rgba(56, 48, 39, .12);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo {
+      width: 88px;
+      height: 88px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #819b86, #5e7d68);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: "Lora", serif;
+      font-size: 2.45rem;
+      font-weight: 600;
+      letter-spacing: -.13em;
+      padding-right: 4px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 16px 34px rgba(87, 113, 94, .25);
+    }
+
+    .brand-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -.055em;
+      margin-bottom: 10px;
+    }
+
+    .brand-subtitle {
+      font-size: 1.25rem;
+      color: var(--sage-dark);
+      font-weight: 500;
+    }
+
+    .hero-wrap {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-wrap::before {
+      content: "";
+      position: absolute;
+      right: -180px;
+      bottom: -220px;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: rgba(119, 150, 129, .15);
+    }
+
+    .hero-wrap::after {
+      content: "";
+      position: absolute;
+      right: 40px;
+      top: 110px;
+      width: 270px;
+      height: 520px;
+      opacity: .28;
+      background:
+        radial-gradient(ellipse at 50% 8%, #78927e 0 18px, transparent 19px),
+        radial-gradient(ellipse at 22% 22%, #78927e 0 25px, transparent 26px),
+        radial-gradient(ellipse at 72% 28%, #78927e 0 28px, transparent 29px),
+        radial-gradient(ellipse at 35% 45%, #78927e 0 35px, transparent 36px),
+        radial-gradient(ellipse at 83% 52%, #78927e 0 34px, transparent 35px),
+        radial-gradient(ellipse at 48% 70%, #78927e 0 42px, transparent 43px);
+      filter: blur(.2px);
+      transform: rotate(-18deg);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 98px 0 76px;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      color: var(--sage-dark);
+      font-weight: 800;
+      letter-spacing: .18em;
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-size: clamp(4.1rem, 7.6vw, 6.8rem);
+      line-height: 1.05;
+      letter-spacing: -.08em;
+      margin: 0 0 34px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 610px;
+      color: var(--muted);
+      font-size: 1.58rem;
+      line-height: 1.55;
+      letter-spacing: -.02em;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      margin-top: 46px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 19px 34px;
+      border-radius: 999px;
+      background: linear-gradient(145deg, #7f9a85, #617f6a);
+      color: white;
+      text-decoration: none;
+      font-size: 1.12rem;
+      font-weight: 700;
+      box-shadow: 0 18px 34px rgba(90, 119, 98, .24);
+    }
+
+    .soft-link {
+      color: var(--sage-dark);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--sage-dark);
+      padding-bottom: 5px;
+    }
+
+    .note {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 54px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .note-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #f0e8dc;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 38px 0 82px;
+    }
+
+    .card {
+      background: rgba(255, 253, 248, .82);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px 28px;
+      box-shadow: 0 18px 45px rgba(56, 48, 39, .07);
+    }
+
+    .icon-circle {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 32px;
+      color: #26342d;
+    }
+
+    .card:nth-child(1) .icon-circle,
+    .card:nth-child(3) .icon-circle {
+      background: var(--sage-soft);
+    }
+
+    .card:nth-child(2) .icon-circle {
+      background: var(--peach-soft);
+    }
+
+    .card h3 {
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -.055em;
+      margin: 0 0 22px;
+    }
+
+    .mini-line {
+      width: 44px;
+      height: 2px;
+      background: var(--sage-dark);
+      margin-bottom: 28px;
+    }
+
+    .card:nth-child(2) .mini-line {
+      background: #d6a16d;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .why {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 70px;
+      padding: 0 22px 78px;
+    }
+
+    .why h2 {
+      font-size: 2.35rem;
+      letter-spacing: -.055em;
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .why .mini-line {
+      margin-top: 24px;
+    }
+
+    .why-copy {
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.75;
+      max-width: 660px;
+    }
+
+    .why-copy p {
+      margin: 0 0 26px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 42px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+    }
+
+    .footer-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #819b86, #5e7d68);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: "Lora", serif;
+      font-size: 1.25rem;
+      letter-spacing: -.12em;
+      padding-right: 2px;
+    }
+
+    .footer-brand {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    svg {
+      width: 36px;
+      height: 36px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 850px) {
+      .page {
+        width: min(100% - 32px, 1120px);
+      }
+
+      .topbar {
+        margin-top: 18px;
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+        font-size: 1.65rem;
+        border-radius: 18px;
+      }
+
+      .brand {
+        gap: 16px;
+      }
+
+      .brand-title {
+        font-size: 1.25rem;
+        margin-bottom: 4px;
+      }
+
+      .brand-subtitle {
+        font-size: .92rem;
+      }
+
+      .hero {
+        padding: 70px 0 58px;
+      }
+
+      .eyebrow {
+        margin-bottom: 32px;
+        font-size: .82rem;
+      }
+
+      h1 {
+        font-size: 3.55rem;
+      }
+
+      .hero p {
+        font-size: 1.18rem;
+      }
+
+      .actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .why {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .hero-wrap::after {
+        display: none;
+      }
+
+      footer {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">SL</div>
+        <div>
+          <div class="brand-title">Project Soft Landing</div>
+          <div class="brand-subtitle">Helpful tools for difficult moments</div>
+        </div>
+      </div>
+    </header>
+  </div>
 
-<header class="topbar">
+  <div class="hero-wrap">
+    <main class="page">
+      <section class="hero">
+        <div class="eyebrow">PRIVATE. SIMPLE. NO ACCOUNT REQUIRED.</div>
 
-<div class="topbar-inner">
+        <h1>Helpful tools for difficult moments.</h1>
 
-<div class="brand">
+        <p>
+          A calm place for small next steps in recovery, sobriety, and the hard moments that come with being human.
+        </p>
 
-<div class="logo">
-SL
-</div>
+        <div class="actions">
+          <a class="button" href="#tools">Explore Tools <span>→</span></a>
+          <a class="soft-link" href="#why">Why this exists</a>
+        </div>
 
-<div>
+        <div class="note">
+          <div class="note-icon">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 39V18" />
+              <path d="M24 29c-8 0-13-5-13-13 8 0 13 5 13 13Z" />
+              <path d="M24 24c7 0 11-4 11-11-7 0-11 4-11 11Z" />
+              <path d="M17 39h14" />
+            </svg>
+          </div>
+          <span>Built for the moments when a softer landing would help.</span>
+        </div>
+      </section>
+    </main>
+  </div>
 
-<div class="brand-title">
-Project Soft Landing
-</div>
+  <main class="page">
+    <section class="cards" id="tools">
+      <article class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 40V16" />
+            <path d="M24 30c-8 0-13-5-13-13 8 0 13 5 13 13Z" />
+            <path d="M24 25c7 0 11-4 11-11-7 0-11 4-11 11Z" />
+            <path d="M15 40h18" />
+          </svg>
+        </div>
+        <h3>Cravings</h3>
+        <div class="mini-line"></div>
+        <p>For moments that feel urgent, overwhelming, or hard to sit with.</p>
+      </article>
 
-<div class="brand-sub">
-Helpful tools for difficult moments
-</div>
+      <article class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M22 13c8-3 15 3 13 11-1 8-9 13-17 10-8-3-10-13-4-18 6-6 17-3 20 5 3 9-5 18-15 16-9-2-15-11-11-20" />
+          </svg>
+        </div>
+        <h3>Reflection</h3>
+        <div class="mini-line"></div>
+        <p>For when your thoughts feel noisy and you need a softer place to sort them.</p>
+      </article>
 
-</div>
+      <article class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M15 39c1-12 7-18 18-20" />
+            <path d="M33 19v-8l8 3-8 3" />
+            <path d="M13 39h23" />
+            <path d="M18 32c3 0 5 1 7 3" />
+          </svg>
+        </div>
+        <h3>Next Step</h3>
+        <div class="mini-line"></div>
+        <p>For when you don’t need a whole plan; you just need the next right move.</p>
+      </article>
+    </section>
 
-</div>
+    <section class="why" id="why">
+      <div>
+        <h2>Why this exists</h2>
+        <div class="mini-line"></div>
+      </div>
 
-</div>
+      <div class="why-copy">
+        <p>
+          Recovery is not always shaped by dramatic turning points. Sometimes it is shaped quietly; late at night, after a hard conversation, during boredom, shame, uncertainty, or exhaustion.
+        </p>
 
-</header>
+        <p>
+          Project Soft Landing exists to create small moments of support when people need them.
+        </p>
+      </div>
+    </section>
 
-<main>
-
-<section class="hero">
-
-<div class="leaf">
-🌿
-</div>
-
-<div class="eyebrow">
-PRIVATE. SIMPLE. NO ACCOUNT REQUIRED.
-</div>
-
-<h1>
-Helpful tools for difficult moments.
-</h1>
-
-<p>
-A calm place for small next steps in recovery, sobriety, and the hard moments that come with being human.
-</p>
-
-<div class="actions">
-
-<a
-class="button"
-href="#tools">
-
-Explore Tools →
-
-</a>
-
-<a
-class="link"
-href="#why">
-
-Why this exists
-
-</a>
-
-</div>
-
-<div class="note">
-
-<div class="note-icon">
-🌱
-</div>
-
-Built for the moments when a softer landing would help.
-
-</div>
-
-</section>
-
-<section
-class="cards"
-id="tools">
-
-<div class="card">
-
-<div class="icon">
-🌱
-</div>
-
-<h3>
-Cravings
-</h3>
-
-<p>
-For moments that feel urgent, overwhelming, or hard to sit with.
-</p>
-
-</div>
-
-<div class="card">
-
-<div class="icon">
-🌀
-</div>
-
-<h3>
-Reflection
-</h3>
-
-<p>
-For when your thoughts feel noisy and you need a softer place to sort them.
-</p>
-
-</div>
-
-<div class="card">
-
-<div class="icon">
-↗
-</div>
-
-<h3>
-Next Step
-</h3>
-
-<p>
-For when you do not need a whole plan; you just need the next right move.
-</p>
-
-</div>
-
-</section>
-
-<section
-class="why"
-id="why">
-
-<div class="why-title">
-Why this exists
-</div>
-
-<div class="why-copy">
-
-<p>
-Recovery is not always shaped by dramatic turning points.
-</p>
-
-<p>
-Sometimes it is shaped quietly; late at night, after difficult conversations, during boredom, shame, uncertainty, or exhaustion.
-</p>
-
-<p>
-Project Soft Landing exists to create small moments of support when people need them.
-</p>
-
-</div>
-
-</section>
-
-<footer>
-
-<div class="logo">
-SL
-</div>
-
-Project Soft Landing · Built with care.
-
-</footer>
-
-</main>
-
+    <footer>
+      <div class="footer-logo">SL</div>
+      <div class="footer-brand">Project Soft Landing</div>
+      <div class="divider"></div>
+      <div>Built with care.</div>
+    </footer>
+  </main>
 </body>
-
 </html>
