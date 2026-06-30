@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Help Me Help Them | Project Soft Landing</title>
+  <meta name="description" content="A calm guide for supporting someone you love through addiction, relapse, recovery, and difficult moments." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --panel: #fffdf8;
+      --text: #202428;
+      --muted: #5f666d;
+      --sage: #6f8d7a;
+      --sage-dark: #55735f;
+      --sage-soft: #dfe8dc;
+      --peach-soft: #f3dcc4;
+      --border: #dfd6ca;
+      --danger: #9b4a42;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(220, 169, 111, .20), transparent 280px),
+        radial-gradient(circle at 92% 25%, rgba(119, 150, 129, .14), transparent 390px),
+        var(--bg);
+    }
+
+    .page {
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 36px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 70px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #819b86, #5e7d68);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: "Lora", serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -.13em;
+      padding-right: 3px;
+      box-shadow: 0 14px 30px rgba(87, 113, 94, .22);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 3px;
+    }
+
+    .panel {
+      background: rgba(255, 253, 248, .88);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: clamp(30px, 6vw, 58px);
+      box-shadow: 0 24px 80px rgba(56, 48, 39, .10);
+    }
+
+    .step {
+      display: none;
+      animation: fade .28s ease;
+    }
+
+    .step.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      color: var(--sage-dark);
+      font-weight: 800;
+      letter-spacing: .16em;
+      font-size: .86rem;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: clamp(3.2rem, 8vw, 6.1rem);
+      line-height: 1;
+      letter-spacing: -.08em;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.07em;
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.18rem;
+      line-height: 1.75;
+      margin: 0 0 30px;
+      max-width: 720px;
+    }
+
+    .large { font-size: 1.35rem; }
+
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 22px;
+      background: #fffaf3;
+      font: inherit;
+      font-size: 1.05rem;
+      color: var(--text);
+      resize: vertical;
+      outline: none;
+      line-height: 1.65;
+    }
+
+    textarea:focus { border-color: var(--sage); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    button,
+    .button {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 999px;
+      padding: 16px 26px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: .7;
+    }
+
+    .primary {
+      background: linear-gradient(145deg, #7f9a85, #617f6a);
+      color: white;
+      box-shadow: 0 18px 34px rgba(90, 119, 98, .22);
+    }
+
+    .secondary {
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+    }
+
+    .plain {
+      background: transparent;
+      color: var(--sage-dark);
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .danger {
+      background: #f2dedb;
+      color: var(--danger);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .option {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px 20px;
+      color: var(--text);
+      text-align: left;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .option.selected {
+      border-color: var(--sage);
+      background: var(--sage-soft);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .result-card {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 14px 40px rgba(56, 48, 39, .05);
+    }
+
+    .result-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.12rem;
+      letter-spacing: -.035em;
+    }
+
+    .result-card p {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .draft {
+      white-space: pre-wrap;
+    }
+
+    .copied {
+      display: none;
+      color: var(--sage-dark);
+      font-weight: 800;
+      margin-top: 16px;
+    }
+
+    .copied.show { display: block; }
+
+    .tiny {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
+      margin-top: 28px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--sage-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 28px, 980px);
+        padding-top: 22px;
+      }
+
+      .topbar { margin-bottom: 34px; }
+      .panel { border-radius: 28px; }
+      .options,
+      .result-grid { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+      h1 { font-size: 3.6rem; }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button,
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="logo">SL</div>
+      <div>
+        <div class="brand-title">Project Soft Landing</div>
+        <div class="brand-sub">Help Me Help Them</div>
+      </div>
+    </header>
+
+    <main class="panel">
+      <section class="step active" data-step="0">
+        <div class="eyebrow">Help Me Help Them</div>
+        <h1>Loving someone through addiction can be confusing.</h1>
+        <p class="large">You can care deeply and still need help knowing what to say, what to do, and what not to carry alone.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Begin</button>
+          <a class="button plain" href="/">Back home</a>
+        </div>
+      </section>
+
+      <section class="step" data-step="1">
+        <div class="eyebrow">First</div>
+        <h2>Is anyone in immediate danger?</h2>
+        <p>This page can help you think through a hard moment, but it is not emergency support.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">No, safe enough to continue</button>
+          <button class="danger" onclick="showEmergency()">Yes, immediate help is needed</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="2">
+        <div class="eyebrow">Tell the truth gently</div>
+        <h2>What’s happening?</h2>
+        <p>Write it messy if you need to. A few sentences is enough.</p>
+        <textarea id="situationText" placeholder="Example: My husband relapsed after three years sober and I don’t know whether to be supportive, angry, or done. I love him, but I’m exhausted."></textarea>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="3">
+        <div class="eyebrow">Relationship</div>
+        <h2>Who are you trying to support?</h2>
+        <p>This helps shape the response without making assumptions.</p>
+        <div class="options" id="personOptions">
+          <button class="option" onclick="selectPerson(this, 'partner')">Partner / spouse</button>
+          <button class="option" onclick="selectPerson(this, 'child')">Child</button>
+          <button class="option" onclick="selectPerson(this, 'parent')">Parent</button>
+          <button class="option" onclick="selectPerson(this, 'sibling')">Sibling</button>
+          <button class="option" onclick="selectPerson(this, 'friend')">Friend</button>
+          <button class="option" onclick="selectPerson(this, 'coworker')">Coworker</button>
+          <button class="option" onclick="selectPerson(this, 'family')">Family member</button>
+          <button class="option" onclick="selectPerson(this, 'someone')">Someone else</button>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="4">
+        <div class="eyebrow">Need</div>
+        <h2>What do you need most right now?</h2>
+        <p>Choose the closest one. You can use the result however you want.</p>
+        <div class="options" id="needOptions">
+          <button class="option" onclick="selectNeed(this, 'say')">I don’t know what to say.</button>
+          <button class="option" onclick="selectNeed(this, 'do')">I don’t know what to do.</button>
+          <button class="option" onclick="selectNeed(this, 'boundaries')">I need boundaries.</button>
+          <button class="option" onclick="selectNeed(this, 'perspective')">I need perspective.</button>
+          <button class="option" onclick="selectNeed(this, 'trust')">I’m struggling with trust.</button>
+          <button class="option" onclick="selectNeed(this, 'hope')">I need hope.</button>
+          <button class="option" onclick="selectNeed(this, 'understand')">I need to understand addiction better.</button>
+          <button class="option" onclick="selectNeed(this, 'myself')">I need to take care of myself.</button>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="generateSupport()">Help me help them</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="5">
+        <div class="eyebrow">A softer way through</div>
+        <h2>You do not have to carry this perfectly.</h2>
+        <p>This is not a verdict. It is a calmer place to start.</p>
+
+        <div class="result-grid">
+          <div class="result-card wide">
+            <h3>What I’m hearing</h3>
+            <p id="hearingText" class="draft">Thinking this through...</p>
+          </div>
+
+          <div class="result-card">
+            <h3>One thing to remember</h3>
+            <p id="rememberText">Thinking this through...</p>
+          </div>
+
+          <div class="result-card">
+            <h3>You could say</h3>
+            <p id="sayText" class="draft">Thinking this through...</p>
+          </div>
+
+          <div class="result-card">
+            <h3>One next step</h3>
+            <p id="stepText">Thinking this through...</p>
+          </div>
+
+          <div class="result-card wide">
+            <h3>What not to carry</h3>
+            <p id="carryText" class="draft">Thinking this through...</p>
+          </div>
+
+          <div class="result-card wide">
+            <h3>Take care of yourself, too</h3>
+            <p id="selfCareText">Thinking this through...</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="copyMessage()">Copy what to say</button>
+          <button class="secondary" onclick="restart()">Start over</button>
+          <a class="button plain" href="/">Back home</a>
+        </div>
+
+        <div class="copied" id="copied">Copied.</div>
+
+        <div class="tiny">
+          Project Soft Landing is not medical advice, therapy, legal advice, or emergency support. If someone is in immediate danger, contact emergency services or a local crisis line now.
+        </div>
+      </section>
+
+      <section class="step" data-step="emergency">
+        <div class="eyebrow">Immediate support</div>
+        <h2>Please get direct help right now.</h2>
+        <p>If anyone is in immediate danger, call your local emergency number now. If you are in the U.S. and someone may harm themselves, call or text <strong>988</strong> for the Suicide & Crisis Lifeline.</p>
+        <p>If you can, contact another trusted person so you are not handling the situation alone.</p>
+        <div class="actions">
+          <a class="button primary" href="tel:988">Call 988</a>
+          <button class="secondary" onclick="restart()">Restart</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      <a href="/">Project Soft Landing</a> · Built with care.
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    let person = "someone";
+    let need = "perspective";
+    let latestSayText = "";
+
+    function showStep(step) {
+      document.querySelectorAll(".step").forEach(section => section.classList.remove("active"));
+      const next = document.querySelector(`[data-step="${step}"]`);
+      if (next) next.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextStep() {
+      currentStep += 1;
+      showStep(currentStep);
+    }
+
+    function showEmergency() {
+      showStep("emergency");
+    }
+
+    function markSelected(group, button) {
+      document.querySelectorAll(`#${group} .option`).forEach(option => option.classList.remove("selected"));
+      button.classList.add("selected");
+    }
+
+    function selectPerson(button, value) {
+      person = value;
+      markSelected("personOptions", button);
+    }
+
+    function selectNeed(button, value) {
+      need = value;
+      markSelected("needOptions", button);
+    }
+
+    async function callSoftLandingAI(payload) {
+      const response = await fetch("/api/softlanding", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      return data.text;
+    }
+
+    function fallbackResponse() {
+      return {
+        hearing: "You are trying to love someone through something painful, and it makes sense that you feel overwhelmed. Caring about them does not mean you have to know the perfect thing to do.",
+        remember: "You can care about someone deeply and still have limits. Support is not the same as carrying everything alone.",
+        say: "I love you, and I want to support you. I also need to be honest that I’m scared and overwhelmed. I’m not here to shame you, but I do need us to talk about what support looks like without pretending this is easy.",
+        step: "Choose one calm action: send one message, call one trusted person, or write down one boundary you need before the next conversation.",
+        carry: "You do not have to solve everything tonight.\nYou do not have to make their choices for them.\nYou do not have to abandon yourself to prove that you care.",
+        selfCare: "Drink water, step outside for a few minutes, and tell one person who supports you what is happening. You deserve support, too."
+      };
+    }
+
+    async function generateSupport() {
+      const situation = document.getElementById("situationText").value.trim();
+
+      showLoading();
+      currentStep = 5;
+      showStep(5);
+
+      try {
+        const text = await callSoftLandingAI({
+          mode: "support",
+          input: {
+            situation,
+            person,
+            need,
+            task: "Return a JSON object with keys: hearing, remember, say, step, carry, selfCare. Do not include markdown fences."
+          }
+        });
+
+        const parsed = parseAIResponse(text);
+        renderResult(parsed);
+      } catch (error) {
+        console.error(error);
+        renderResult(fallbackResponse());
+      }
+    }
+
+    function showLoading() {
+      document.getElementById("hearingText").textContent = "Thinking this through...";
+      document.getElementById("rememberText").textContent = "Thinking this through...";
+      document.getElementById("sayText").textContent = "Thinking this through...";
+      document.getElementById("stepText").textContent = "Thinking this through...";
+      document.getElementById("carryText").textContent = "Thinking this through...";
+      document.getElementById("selfCareText").textContent = "Thinking this through...";
+    }
+
+    function parseAIResponse(text) {
+      try {
+        const cleaned = text.replace(/```json/g, "").replace(/```/g, "").trim();
+        const parsed = JSON.parse(cleaned);
+        return {
+          hearing: parsed.hearing || fallbackResponse().hearing,
+          remember: parsed.remember || fallbackResponse().remember,
+          say: parsed.say || fallbackResponse().say,
+          step: parsed.step || fallbackResponse().step,
+          carry: parsed.carry || fallbackResponse().carry,
+          selfCare: parsed.selfCare || fallbackResponse().selfCare
+        };
+      } catch (error) {
+        return fallbackResponse();
+      }
+    }
+
+    function renderResult(result) {
+      latestSayText = result.say;
+      document.getElementById("hearingText").textContent = result.hearing;
+      document.getElementById("rememberText").textContent = result.remember;
+      document.getElementById("sayText").textContent = result.say;
+      document.getElementById("stepText").textContent = result.step;
+      document.getElementById("carryText").textContent = result.carry;
+      document.getElementById("selfCareText").textContent = result.selfCare;
+      document.getElementById("copied").classList.remove("show");
+    }
+
+    function copyMessage() {
+      navigator.clipboard.writeText(latestSayText);
+      document.getElementById("copied").classList.add("show");
+    }
+
+    function restart() {
+      currentStep = 0;
+      person = "someone";
+      need = "perspective";
+      latestSayText = "";
+      document.getElementById("situationText").value = "";
+      document.querySelectorAll(".option").forEach(option => option.classList.remove("selected"));
+      showStep(0);
+    }
+  </script>
+</body>
+</html>
