@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Find My Next Step | Project Soft Landing</title>
+  <meta name="description" content="A simple recovery support page for choosing one small next step when everything feels unclear." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --panel: #fffdf8;
+      --text: #202428;
+      --muted: #5f666d;
+      --sage: #6f8d7a;
+      --sage-dark: #55735f;
+      --sage-soft: #dfe8dc;
+      --peach-soft: #f3dcc4;
+      --border: #dfd6ca;
+      --danger: #9b4a42;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(220, 169, 111, .20), transparent 280px),
+        radial-gradient(circle at 92% 25%, rgba(119, 150, 129, .14), transparent 390px),
+        var(--bg);
+    }
+
+    .page {
+      width: min(920px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 36px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 70px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #819b86, #5e7d68);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: "Lora", serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -.13em;
+      padding-right: 3px;
+      box-shadow: 0 14px 30px rgba(87, 113, 94, .22);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 3px;
+    }
+
+    .panel {
+      background: rgba(255, 253, 248, .88);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: clamp(30px, 6vw, 58px);
+      box-shadow: 0 24px 80px rgba(56, 48, 39, .10);
+    }
+
+    .step {
+      display: none;
+      animation: fade .28s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      color: var(--sage-dark);
+      font-weight: 800;
+      letter-spacing: .16em;
+      font-size: .86rem;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: clamp(3.2rem, 8vw, 6.1rem);
+      line-height: 1;
+      letter-spacing: -.08em;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.07em;
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.18rem;
+      line-height: 1.75;
+      margin: 0 0 30px;
+      max-width: 660px;
+    }
+
+    .large {
+      font-size: 1.35rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    button,
+    .button {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 999px;
+      padding: 16px 26px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .primary {
+      background: linear-gradient(145deg, #7f9a85, #617f6a);
+      color: white;
+      box-shadow: 0 18px 34px rgba(90, 119, 98, .22);
+    }
+
+    .secondary {
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+    }
+
+    .plain {
+      background: transparent;
+      color: var(--sage-dark);
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .danger {
+      background: #f2dedb;
+      color: var(--danger);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .option {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px 20px;
+      color: var(--text);
+      text-align: left;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .option.selected {
+      border-color: var(--sage);
+      background: var(--sage-soft);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .result-card {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .result-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      letter-spacing: -.035em;
+    }
+
+    .result-card p {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .tiny {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
+      margin-top: 28px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--sage-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 28px, 920px);
+        padding-top: 22px;
+      }
+
+      .topbar {
+        margin-bottom: 34px;
+      }
+
+      .panel {
+        border-radius: 28px;
+      }
+
+      .options,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 3.6rem;
+      }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button,
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="logo">SL</div>
+      <div>
+        <div class="brand-title">Project Soft Landing</div>
+        <div class="brand-sub">Find My Next Step</div>
+      </div>
+    </header>
+
+    <main class="panel">
+      <section class="step active" data-step="0">
+        <div class="eyebrow">Find My Next Step</div>
+        <h1>You do not need the whole plan.</h1>
+        <p class="large">Just one small next step for where you are today.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Begin</button>
+          <a class="button plain" href="/">Back home</a>
+        </div>
+      </section>
+
+      <section class="step" data-step="1">
+        <div class="eyebrow">First</div>
+        <h2>Are you safe right now?</h2>
+        <p>This page can help you choose a next step, but it is not emergency support.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Yes, I’m safe enough to continue</button>
+          <button class="danger" onclick="showEmergency()">No, I need immediate help</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="2">
+        <div class="eyebrow">Today</div>
+        <h2>Where are you right now?</h2>
+        <p>Choose the closest answer. You can be honest here.</p>
+
+        <div class="options" id="stateOptions">
+          <button class="option" onclick="selectState(this, 'used')">I used today.</button>
+          <button class="option" onclick="selectState(this, 'thinking')">I’m thinking about using.</button>
+          <button class="option" onclick="selectState(this, 'starting')">I’m starting over.</button>
+          <button class="option" onclick="selectState(this, 'treatment')">I just left treatment.</button>
+          <button class="option" onclick="selectState(this, 'struggling')">I’m doing okay, but struggling.</button>
+          <button class="option" onclick="selectState(this, 'supporting')">I’m supporting someone else.</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="3">
+        <div class="eyebrow">Pressure point</div>
+        <h2>What is making today hard?</h2>
+        <p>Pick one. If there are several, choose the loudest one.</p>
+
+        <div class="options" id="hardOptions">
+          <button class="option" onclick="selectHard(this, 'relationships')">Relationships</button>
+          <button class="option" onclick="selectHard(this, 'stress')">Stress</button>
+          <button class="option" onclick="selectHard(this, 'money')">Money</button>
+          <button class="option" onclick="selectHard(this, 'work')">Work</button>
+          <button class="option" onclick="selectHard(this, 'loneliness')">Loneliness</button>
+          <button class="option" onclick="selectHard(this, 'boredom')">Boredom</button>
+          <button class="option" onclick="selectHard(this, 'grief')">Grief</button>
+          <button class="option" onclick="selectHard(this, 'pain')">Pain</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="4">
+        <div class="eyebrow">Energy</div>
+        <h2>What do you have energy for?</h2>
+        <p>The answer can be almost nothing. That still counts.</p>
+
+        <div class="options" id="energyOptions">
+          <button class="option" onclick="selectEnergy(this, 'none')">Almost none</button>
+          <button class="option" onclick="selectEnergy(this, 'little')">A little</button>
+          <button class="option" onclick="selectEnergy(this, 'okay')">I’m okay</button>
+          <button class="option" onclick="selectEnergy(this, 'support')">I need someone else involved</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="showResults()">Show my next step</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="5">
+        <div class="eyebrow">Today only</div>
+        <h2>Your next step.</h2>
+        <p id="summaryText">You do not have to solve tomorrow today.</p>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <h3>Priority</h3>
+            <p id="priorityText">Make the next hour safer and simpler.</p>
+          </div>
+
+          <div class="result-card">
+            <h3>Avoid</h3>
+            <p id="avoidText">Avoid big decisions while your system is overloaded.</p>
+          </div>
+
+          <div class="result-card">
+            <h3>One tiny win</h3>
+            <p id="winText">Drink water, eat something small, and change your environment.</p>
+          </div>
+
+          <div class="result-card">
+            <h3>If it gets harder</h3>
+            <p id="harderText">Text someone: “Can you check in on me tonight?”</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="restart()">Start over</button>
+          <a class="button secondary" href="/pause.html">Take The Pause</a>
+          <a class="button plain" href="/">Back home</a>
+        </div>
+
+        <div class="tiny">
+          Project Soft Landing is not medical advice, therapy, or emergency support. If you may hurt yourself or someone else, call emergency services or reach out to a trusted person now.
+        </div>
+      </section>
+
+      <section class="step" data-step="emergency">
+        <div class="eyebrow">Immediate support</div>
+        <h2>Please get direct help right now.</h2>
+        <p>
+          If you are in immediate danger, call your local emergency number now. If you are in the U.S. and thinking about harming yourself, call or text <strong>988</strong> for the Suicide & Crisis Lifeline.
+        </p>
+        <p>
+          You can also contact someone you trust and say: “I’m not safe alone right now. Can you stay with me or call me?”
+        </p>
+        <div class="actions">
+          <a class="button primary" href="tel:988">Call 988</a>
+          <button class="secondary" onclick="restart()">I’m safe enough to restart</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      <a href="/">Project Soft Landing</a> · Built with care.
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    let state = "struggling";
+    let hard = "stress";
+    let energy = "little";
+
+    function showStep(step) {
+      document.querySelectorAll(".step").forEach(section => {
+        section.classList.remove("active");
+      });
+
+      const next = document.querySelector(`[data-step="${step}"]`);
+      if (next) next.classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextStep() {
+      currentStep += 1;
+      showStep(currentStep);
+    }
+
+    function showEmergency() {
+      showStep("emergency");
+    }
+
+    function markSelected(group, button) {
+      document.querySelectorAll(`#${group} .option`).forEach(option => {
+        option.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+    }
+
+    function selectState(button, value) {
+      state = value;
+      markSelected("stateOptions", button);
+    }
+
+    function selectHard(button, value) {
+      hard = value;
+      markSelected("hardOptions", button);
+    }
+
+    function selectEnergy(button, value) {
+      energy = value;
+      markSelected("energyOptions", button);
+    }
+
+    function showResults() {
+      let summary = "You do not have to solve tomorrow today.";
+      let priority = "Make the next hour safer and simpler.";
+      let avoid = "Avoid big decisions while your system is overloaded.";
+      let win = "Drink water, eat something small, and change your environment.";
+      let harder = "Text someone: “Can you check in on me tonight?”";
+
+      if (state === "used") {
+        summary = "Starting over can feel heavy. Your job right now is not to punish yourself. Your job is to make the next hour safer.";
+        priority = "Move toward safety, honesty, and basic care.";
+        avoid = "Avoid hiding, spiraling, or deciding that the whole day is ruined.";
+        win = "Drink water, eat something if you can, and tell one safe person the truth.";
+        harder = "Send: “I used today and I don’t want to disappear. Can you talk for a minute?”";
+      }
+
+      if (state === "thinking") {
+        summary = "The urge may feel urgent, but you still have space between the feeling and the decision.";
+        priority = "Create distance from the option to use.";
+        avoid = "Avoid being alone with easy access, cash, contacts, or the place connected to using.";
+        win = "Change rooms, step outside, shower, or drive somewhere safer for ten minutes.";
+        harder = "Send: “I’m close to making a bad decision. Can you stay with me for a bit?”";
+      }
+
+      if (state === "starting") {
+        summary = "Starting over is still starting. You are not back at zero if you learned something.";
+        priority = "Keep today small and structured.";
+        avoid = "Avoid trying to fix your entire life in one night.";
+        win = "Choose one stabilizing action: food, water, shower, sleep, meeting, or a call.";
+        harder = "Send: “I’m starting over and could use some encouragement today.”";
+      }
+
+      if (state === "treatment") {
+        summary = "Leaving treatment can feel exposed. Structure matters more than confidence right now.";
+        priority = "Put support around the next twenty-four hours.";
+        avoid = "Avoid isolation, old routines, and unplanned empty time.";
+        win = "Schedule one check-in, one meal, and one reason to leave the house safely.";
+        harder = "Send: “Can you help me make tonight less open-ended?”";
+      }
+
+      if (state === "supporting") {
+        summary = "Supporting someone does not mean carrying the entire situation alone.";
+        priority = "Stay compassionate without abandoning your own steadiness.";
+        avoid = "Avoid threats, lectures, or trying to control what you cannot control.";
+        win = "Send one calm message with care and a clear boundary.";
+        harder = "Send: “I care about you. I can stay connected, but I can’t be the only support.”";
+      }
+
+      if (hard === "relationships") {
+        avoid = "Avoid sending the longest, sharpest, or most emotional message while activated.";
+      }
+
+      if (hard === "loneliness") {
+        priority = "Reduce isolation before solving anything else.";
+        win = "Send one low-pressure text: “Can I just sit on the phone with you for a few minutes?”";
+      }
+
+      if (hard === "boredom") {
+        win = "Change the shape of the next thirty minutes: walk, shower, clean one small area, or go somewhere public.";
+      }
+
+      if (hard === "money" || hard === "work") {
+        avoid = "Avoid making financial, job, or life decisions while emotionally flooded.";
+      }
+
+      if (hard === "grief" || hard === "pain") {
+        priority = "Treat this like a heavy-body day, not a character failure.";
+        win = "Do one body-based act of care: water, food, shower, medication as prescribed, or rest.";
+      }
+
+      if (energy === "none") {
+        win = "Put both feet on the floor, drink water, and do one thing that takes less than two minutes.";
+      }
+
+      if (energy === "support") {
+        priority = "Do not make this a solo mission.";
+        harder = "Call or text someone now: “I need another person involved tonight.”";
+      }
+
+      document.getElementById("summaryText").textContent = summary;
+      document.getElementById("priorityText").textContent = priority;
+      document.getElementById("avoidText").textContent = avoid;
+      document.getElementById("winText").textContent = win;
+      document.getElementById("harderText").textContent = harder;
+
+      currentStep = 5;
+      showStep(5);
+    }
+
+    function restart() {
+      currentStep = 0;
+      state = "struggling";
+      hard = "stress";
+      energy = "little";
+
+      document.querySelectorAll(".option").forEach(option => {
+        option.classList.remove("selected");
+      });
+
+      showStep(0);
+    }
+  </script>
+</body>
+</html>
