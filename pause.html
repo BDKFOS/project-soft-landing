@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Pause | Project Soft Landing</title>
+  <meta name="description" content="Take one quiet minute before your next decision." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --panel: #fffdf8;
+      --text: #202428;
+      --muted: #5f666d;
+      --sage: #6f8d7a;
+      --sage-dark: #55735f;
+      --sage-soft: #dfe8dc;
+      --peach-soft: #f3dcc4;
+      --border: #dfd6ca;
+      --danger: #9b4a42;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(220, 169, 111, .20), transparent 280px),
+        radial-gradient(circle at 92% 25%, rgba(119, 150, 129, .14), transparent 390px),
+        var(--bg);
+    }
+
+    .page {
+      width: min(920px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 36px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 70px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #819b86, #5e7d68);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: "Lora", serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -.13em;
+      padding-right: 3px;
+      box-shadow: 0 14px 30px rgba(87, 113, 94, .22);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 3px;
+    }
+
+    .panel {
+      background: rgba(255, 253, 248, .88);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: clamp(30px, 6vw, 58px);
+      box-shadow: 0 24px 80px rgba(56, 48, 39, .10);
+    }
+
+    .step {
+      display: none;
+      animation: fade .28s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      color: var(--sage-dark);
+      font-weight: 800;
+      letter-spacing: .16em;
+      font-size: .86rem;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: clamp(3.2rem, 8vw, 6.1rem);
+      line-height: 1;
+      letter-spacing: -.08em;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.07em;
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.18rem;
+      line-height: 1.75;
+      margin: 0 0 30px;
+      max-width: 660px;
+    }
+
+    .large {
+      font-size: 1.35rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    button,
+    .button {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 999px;
+      padding: 16px 26px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .primary {
+      background: linear-gradient(145deg, #7f9a85, #617f6a);
+      color: white;
+      box-shadow: 0 18px 34px rgba(90, 119, 98, .22);
+    }
+
+    .secondary {
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+    }
+
+    .plain {
+      background: transparent;
+      color: var(--sage-dark);
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .danger {
+      background: #f2dedb;
+      color: var(--danger);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .option {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px 20px;
+      color: var(--text);
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .option.selected {
+      border-color: var(--sage);
+      background: var(--sage-soft);
+    }
+
+    .slider-wrap {
+      margin-top: 34px;
+      max-width: 560px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--sage-dark);
+    }
+
+    .intensity {
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: -.07em;
+      margin: 12px 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+      background: #fffaf3;
+      font: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--sage);
+    }
+
+    .breath-box {
+      display: grid;
+      place-items: center;
+      min-height: 320px;
+      text-align: center;
+    }
+
+    .breath-circle {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: var(--sage-soft);
+      display: grid;
+      place-items: center;
+      color: var(--sage-dark);
+      font-size: 1.35rem;
+      font-weight: 800;
+      animation: breathe 8s ease-in-out infinite;
+      margin-bottom: 34px;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(.92); }
+      50% { transform: scale(1.08); }
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .result-card {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .result-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      letter-spacing: -.035em;
+    }
+
+    .result-card p {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .tiny {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
+      margin-top: 28px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--sage-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 28px, 920px);
+        padding-top: 22px;
+      }
+
+      .topbar {
+        margin-bottom: 34px;
+      }
+
+      .panel {
+        border-radius: 28px;
+      }
+
+      .options,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 3.6rem;
+      }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button,
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="logo">SL</div>
+      <div>
+        <div class="brand-title">Project Soft Landing</div>
+        <div class="brand-sub">The Pause</div>
+      </div>
+    </header>
+
+    <main class="panel">
+      <section class="step active" data-step="0">
+        <div class="eyebrow">The Pause</div>
+        <h1>Sometimes the best next step is not a step at all.</h1>
+        <p class="large">Take one quiet minute before your next decision.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Begin</button>
+          <a class="button plain" href="/">Back home</a>
+        </div>
+      </section>
+
+      <section class="step" data-step="1">
+        <div class="eyebrow">Before we begin</div>
+        <h2>Are you safe right now?</h2>
+        <p>This page can help you pause, but it is not emergency support.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Yes, I’m safe enough to continue</button>
+          <button class="danger" onclick="showEmergency()">No, I need immediate help</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="2">
+        <div class="eyebrow">Name the moment</div>
+        <h2>How are you feeling?</h2>
+        <p>Pick the closest one. It does not have to be perfect.</p>
+        <div class="options" id="feelingOptions">
+          <button class="option" onclick="selectFeeling(this, 'craving')">Craving</button>
+          <button class="option" onclick="selectFeeling(this, 'angry')">Angry</button>
+          <button class="option" onclick="selectFeeling(this, 'ashamed')">Ashamed</button>
+          <button class="option" onclick="selectFeeling(this, 'lonely')">Lonely</button>
+          <button class="option" onclick="selectFeeling(this, 'anxious')">Anxious</button>
+          <button class="option" onclick="selectFeeling(this, 'overwhelmed')">Overwhelmed</button>
+          <button class="option" onclick="selectFeeling(this, 'sad')">Sad</button>
+          <button class="option" onclick="selectFeeling(this, 'unsure')">I don’t know</button>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="3">
+        <div class="eyebrow">Intensity</div>
+        <h2>How intense is it?</h2>
+        <p>There is no right answer. Just notice where you are.</p>
+        <div class="slider-wrap">
+          <input type="range" min="1" max="10" value="6" id="intensity" oninput="updateIntensity()" />
+          <div class="intensity" id="intensityValue">6</div>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="4">
+        <div class="eyebrow">Breathe</div>
+        <h2>Take one slow breath.</h2>
+        <div class="breath-box">
+          <div>
+            <div class="breath-circle">In... out...</div>
+            <p>In slowly. Let your shoulders drop. Out slowly. You do not have to solve everything right now.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">I took a breath</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="5">
+        <div class="eyebrow">Notice</div>
+        <h2>You’re here.</h2>
+        <p class="large">You noticed what you are feeling. That is already a different decision than acting without noticing.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Keep going</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="6">
+        <div class="eyebrow">Optional</div>
+        <h2>What’s happening?</h2>
+        <p>One sentence is enough. You can also leave this blank.</p>
+        <textarea id="context" placeholder="Example: I had a hard conversation and now I want to disappear for a while."></textarea>
+        <div class="actions">
+          <button class="primary" onclick="showResults()">Show me one softer next step</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="7">
+        <div class="eyebrow">A softer landing</div>
+        <h2>You took a pause.</h2>
+        <p id="summaryText">Whether today feels easy or impossible, I’m glad you did.</p>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <h3>Right now</h3>
+            <p id="rightNow">Drink a glass of water, move to a different room, and give yourself two more minutes before deciding anything.</p>
+          </div>
+
+          <div class="result-card">
+            <h3>Remember</h3>
+            <p>Urges rise and fall. They do not stay at their peak forever.</p>
+          </div>
+
+          <div class="result-card">
+            <h3>Reach out</h3>
+            <p>Text someone you trust: “I’m having a hard moment. Can you stay with me for a minute?”</p>
+          </div>
+
+          <div class="result-card">
+            <h3>When you’re ready</h3>
+            <p>Choose one small next step, not a whole life plan.</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="restart()">Take another pause</button>
+          <a class="button secondary" href="/">Back home</a>
+        </div>
+
+        <div class="tiny">
+          Project Soft Landing is not medical advice, therapy, or emergency support. If you may hurt yourself or someone else, call emergency services or reach out to a trusted person now.
+        </div>
+      </section>
+
+      <section class="step" data-step="emergency">
+        <div class="eyebrow">Immediate support</div>
+        <h2>Please get direct help right now.</h2>
+        <p>
+          If you are in immediate danger, call your local emergency number now. If you are in the U.S. and thinking about harming yourself, call or text <strong>988</strong> for the Suicide & Crisis Lifeline.
+        </p>
+        <p>
+          You can also contact someone you trust and say: “I’m not safe alone right now. Can you stay with me or call me?”
+        </p>
+        <div class="actions">
+          <a class="button primary" href="tel:988">Call 988</a>
+          <button class="secondary" onclick="restart()">I’m safe enough to restart</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      <a href="/">Project Soft Landing</a> · Built with care.
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    let feeling = "unsure";
+
+    function showStep(step) {
+      document.querySelectorAll(".step").forEach(section => {
+        section.classList.remove("active");
+      });
+
+      const next = document.querySelector(`[data-step="${step}"]`);
+      if (next) next.classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextStep() {
+      currentStep += 1;
+      showStep(currentStep);
+    }
+
+    function showEmergency() {
+      showStep("emergency");
+    }
+
+    function selectFeeling(button, value) {
+      feeling = value;
+
+      document.querySelectorAll("#feelingOptions .option").forEach(option => {
+        option.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+    }
+
+    function updateIntensity() {
+      document.getElementById("intensityValue").textContent =
+        document.getElementById("intensity").value;
+    }
+
+    function showResults() {
+      const intensity = Number(document.getElementById("intensity").value);
+      const context = document.getElementById("context").value.trim();
+
+      let summary = "Whether today feels easy or impossible, I’m glad you did.";
+      let rightNow = "Drink a glass of water, move to a different room, and give yourself two more minutes before deciding anything.";
+
+      if (feeling === "craving") {
+        summary = "A craving can feel like a command, but it is still a wave. You paused before obeying it.";
+        rightNow = "Put distance between you and the thing you want. Change rooms, step outside, drink water, and wait ten minutes.";
+      }
+
+      if (feeling === "angry") {
+        summary = "Anger can make everything feel urgent. You do not have to respond at full volume.";
+        rightNow = "Do not send the message yet. Put your phone down, unclench your jaw, and let your body come down first.";
+      }
+
+      if (feeling === "ashamed") {
+        summary = "Shame tries to isolate you. Pausing is one way of refusing to disappear.";
+        rightNow = "Text one safe person a very small truth: “I’m having a rough moment and could use a check-in.”";
+      }
+
+      if (feeling === "lonely") {
+        summary = "Loneliness can make old patterns look comforting. You deserve contact that does not hurt you.";
+        rightNow = "Send one low-pressure message to someone safe: “No need to fix anything. Can you talk for a minute?”";
+      }
+
+      if (feeling === "anxious" || feeling === "overwhelmed") {
+        summary = "When everything feels too big, the next step should be small enough to actually do.";
+        rightNow = "Name five things you can see, put both feet on the floor, and choose one task that takes less than two minutes.";
+      }
+
+      if (feeling === "sad") {
+        summary = "Sadness can make the day feel heavier than it is. You do not have to carry the whole thing at once.";
+        rightNow = "Do one gentle body action: shower, drink water, step outside, or lie down without your phone for five minutes.";
+      }
+
+      if (intensity >= 8) {
+        rightNow += " Because this feels intense, consider contacting someone now instead of handling it alone.";
+      }
+
+      if (context.length > 0) {
+        summary += " You named what was happening. That matters.";
+      }
+
+      document.getElementById("summaryText").textContent = summary;
+      document.getElementById("rightNow").textContent = rightNow;
+
+      currentStep = 7;
+      showStep(7);
+    }
+
+    function restart() {
+      currentStep = 0;
+      feeling = "unsure";
+      document.getElementById("intensity").value = 6;
+      document.getElementById("intensityValue").textContent = "6";
+      document.getElementById("context").value = "";
+
+      document.querySelectorAll(".option").forEach(option => {
+        option.classList.remove("selected");
+      });
+
+      showStep(0);
+    }
+  </script>
+</body>
+</html>
