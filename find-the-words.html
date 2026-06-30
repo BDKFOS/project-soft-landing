@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Find the Words | Project Soft Landing</title>
+  <meta name="description" content="Find calm, honest words for difficult recovery conversations." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --panel: #fffdf8;
+      --text: #202428;
+      --muted: #5f666d;
+      --sage: #6f8d7a;
+      --sage-dark: #55735f;
+      --sage-soft: #dfe8dc;
+      --peach-soft: #f3dcc4;
+      --border: #dfd6ca;
+      --danger: #9b4a42;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(220, 169, 111, .20), transparent 280px),
+        radial-gradient(circle at 92% 25%, rgba(119, 150, 129, .14), transparent 390px),
+        var(--bg);
+    }
+
+    .page {
+      width: min(960px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 36px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 70px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #819b86, #5e7d68);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: "Lora", serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -.13em;
+      padding-right: 3px;
+      box-shadow: 0 14px 30px rgba(87, 113, 94, .22);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 3px;
+    }
+
+    .panel {
+      background: rgba(255, 253, 248, .88);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: clamp(30px, 6vw, 58px);
+      box-shadow: 0 24px 80px rgba(56, 48, 39, .10);
+    }
+
+    .step {
+      display: none;
+      animation: fade .28s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      color: var(--sage-dark);
+      font-weight: 800;
+      letter-spacing: .16em;
+      font-size: .86rem;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: clamp(3.2rem, 8vw, 6.1rem);
+      line-height: 1;
+      letter-spacing: -.08em;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.07em;
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.18rem;
+      line-height: 1.75;
+      margin: 0 0 30px;
+      max-width: 700px;
+    }
+
+    .large { font-size: 1.35rem; }
+
+    textarea {
+      width: 100%;
+      min-height: 170px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 22px;
+      background: #fffaf3;
+      font: inherit;
+      font-size: 1.05rem;
+      color: var(--text);
+      resize: vertical;
+      outline: none;
+      line-height: 1.65;
+    }
+
+    textarea:focus { border-color: var(--sage); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    button,
+    .button {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 999px;
+      padding: 16px 26px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .primary {
+      background: linear-gradient(145deg, #7f9a85, #617f6a);
+      color: white;
+      box-shadow: 0 18px 34px rgba(90, 119, 98, .22);
+    }
+
+    .secondary {
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+    }
+
+    .plain {
+      background: transparent;
+      color: var(--sage-dark);
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .option {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px 20px;
+      color: var(--text);
+      text-align: left;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .option.selected {
+      border-color: var(--sage);
+      background: var(--sage-soft);
+    }
+
+    .draft-box {
+      background: #fffaf3;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      margin-top: 30px;
+      box-shadow: 0 14px 40px rgba(56, 48, 39, .06);
+    }
+
+    .draft-label {
+      color: var(--sage-dark);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .78rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .draft {
+      white-space: pre-wrap;
+      color: var(--text);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .tune-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .tune {
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-size: .92rem;
+      font-weight: 800;
+    }
+
+    .copied {
+      display: none;
+      color: var(--sage-dark);
+      font-weight: 800;
+      margin-top: 16px;
+    }
+
+    .copied.show { display: block; }
+
+    .tiny {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
+      margin-top: 28px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--sage-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 28px, 960px);
+        padding-top: 22px;
+      }
+
+      .topbar { margin-bottom: 34px; }
+
+      .panel { border-radius: 28px; }
+
+      .options { grid-template-columns: 1fr; }
+
+      h1 { font-size: 3.6rem; }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button,
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="logo">SL</div>
+      <div>
+        <div class="brand-title">Project Soft Landing</div>
+        <div class="brand-sub">Find the Words</div>
+      </div>
+    </header>
+
+    <main class="panel">
+      <section class="step active" data-step="0">
+        <div class="eyebrow">Find the Words</div>
+        <h1>Some conversations are harder than they should be.</h1>
+        <p class="large">Start messy. We’ll help shape it into something calmer, honest, and human.</p>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Begin</button>
+          <a class="button plain" href="/">Back home</a>
+        </div>
+      </section>
+
+      <section class="step" data-step="1">
+        <div class="eyebrow">Start here</div>
+        <h2>What do you wish you could say?</h2>
+        <p>Write it badly if you need to. Fragments count. Anger counts. “I don’t know” counts.</p>
+        <textarea id="rawText" placeholder="Example: I relapsed and I don’t know how to tell my wife. I’m scared she’ll hate me, but I don’t want to hide it."></textarea>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="2">
+        <div class="eyebrow">Person</div>
+        <h2>Who is this for?</h2>
+        <p>This helps shape the language without making it fake.</p>
+        <div class="options" id="personOptions">
+          <button class="option" onclick="selectPerson(this, 'partner')">Partner / spouse</button>
+          <button class="option" onclick="selectPerson(this, 'parent')">Parent</button>
+          <button class="option" onclick="selectPerson(this, 'child')">Child</button>
+          <button class="option" onclick="selectPerson(this, 'friend')">Friend</button>
+          <button class="option" onclick="selectPerson(this, 'sponsor')">Sponsor / mentor</button>
+          <button class="option" onclick="selectPerson(this, 'boss')">Boss / work</button>
+          <button class="option" onclick="selectPerson(this, 'family')">Family member</button>
+          <button class="option" onclick="selectPerson(this, 'someone')">Someone else</button>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="3">
+        <div class="eyebrow">Need</div>
+        <h2>What do you want them to understand?</h2>
+        <p>Pick the closest one.</p>
+        <div class="options" id="needOptions">
+          <button class="option" onclick="selectNeed(this, 'help')">I need help.</button>
+          <button class="option" onclick="selectNeed(this, 'honest')">I want to be honest.</button>
+          <button class="option" onclick="selectNeed(this, 'space')">I need space.</button>
+          <button class="option" onclick="selectNeed(this, 'support')">I need support.</button>
+          <button class="option" onclick="selectNeed(this, 'sorry')">I need to apologize.</button>
+          <button class="option" onclick="selectNeed(this, 'boundary')">I need a boundary.</button>
+          <button class="option" onclick="selectNeed(this, 'struggling')">I’m struggling.</button>
+          <button class="option" onclick="selectNeed(this, 'unsure')">I don’t know.</button>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="nextStep()">Continue</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="4">
+        <div class="eyebrow">Tone</div>
+        <h2>How should it sound?</h2>
+        <p>You can adjust this again after the draft appears.</p>
+        <div class="options" id="toneOptions">
+          <button class="option" onclick="selectTone(this, 'gentle')">Gentle</button>
+          <button class="option" onclick="selectTone(this, 'honest')">Honest</button>
+          <button class="option" onclick="selectTone(this, 'direct')">Direct</button>
+          <button class="option" onclick="selectTone(this, 'short')">Short</button>
+          <button class="option" onclick="selectTone(this, 'accountable')">Accountable</button>
+          <button class="option" onclick="selectTone(this, 'hopeful')">Hopeful</button>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="generateDraft()">Find the words</button>
+        </div>
+      </section>
+
+      <section class="step" data-step="5">
+        <div class="eyebrow">Draft</div>
+        <h2>Here’s a place to start.</h2>
+        <p>This is not perfect. It is just something calmer than carrying it alone.</p>
+
+        <div class="draft-box">
+          <div class="draft-label">Message draft</div>
+          <div class="draft" id="draftText"></div>
+        </div>
+
+        <div class="tune-grid">
+          <button class="tune" onclick="tuneDraft('softer')">Softer</button>
+          <button class="tune" onclick="tuneDraft('shorter')">Shorter</button>
+          <button class="tune" onclick="tuneDraft('direct')">More direct</button>
+          <button class="tune" onclick="tuneDraft('accountable')">Add accountability</button>
+          <button class="tune" onclick="tuneDraft('hopeful')">More hopeful</button>
+          <button class="tune" onclick="tuneDraft('less')">Less emotional</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="copyDraft()">Copy message</button>
+          <button class="secondary" onclick="restart()">Start over</button>
+          <a class="button plain" href="/">Back home</a>
+        </div>
+
+        <div class="copied" id="copied">Copied.</div>
+
+        <div class="tiny">
+          You can change anything before sending. This page does not send messages for you.
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      <a href="/">Project Soft Landing</a> · Built with care.
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    let person = "someone";
+    let need = "honest";
+    let tone = "honest";
+    let currentDraft = "";
+
+    function showStep(step) {
+      document.querySelectorAll(".step").forEach(section => section.classList.remove("active"));
+      const next = document.querySelector(`[data-step="${step}"]`);
+      if (next) next.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextStep() {
+      currentStep += 1;
+      showStep(currentStep);
+    }
+
+    function markSelected(group, button) {
+      document.querySelectorAll(`#${group} .option`).forEach(option => option.classList.remove("selected"));
+      button.classList.add("selected");
+    }
+
+    function selectPerson(button, value) {
+      person = value;
+      markSelected("personOptions", button);
+    }
+
+    function selectNeed(button, value) {
+      need = value;
+      markSelected("needOptions", button);
+    }
+
+    function selectTone(button, value) {
+      tone = value;
+      markSelected("toneOptions", button);
+    }
+
+    function personName() {
+      const names = {
+        partner: "you",
+        parent: "you",
+        child: "you",
+        friend: "you",
+        sponsor: "you",
+        boss: "you",
+        family: "you",
+        someone: "you"
+      };
+      return names[person] || "you";
+    }
+
+    function generateDraft() {
+      const raw = document.getElementById("rawText").value.trim();
+      let opener = "Hey. I wanted to say this clearly instead of avoiding it.";
+
+      if (person === "boss") {
+        opener = "Hi. I wanted to be direct and respectful about something I’m dealing with.";
+      }
+
+      if (person === "child") {
+        opener = "Hey kiddo. I want to tell you something in a simple way.";
+      }
+
+      if (tone === "gentle") {
+        opener = "Hey. This is hard for me to say, but I want to say it gently and honestly.";
+      }
+
+      if (tone === "direct") {
+        opener = "Hey. I need to be honest with you.";
+      }
+
+      if (tone === "short") {
+        opener = "Hey. I’m having a hard moment and I wanted to tell you.";
+      }
+
+      let middle = "I’m struggling right now, and I don’t want to hide it or pretend I’m fine.";
+
+      if (need === "help") {
+        middle = "I’m having a hard time and I think I need help instead of trying to handle it alone.";
+      }
+
+      if (need === "honest") {
+        middle = "I want to be honest because hiding it usually makes things worse.";
+      }
+
+      if (need === "space") {
+        middle = "I need a little space to get steady, but I don’t want that to come across as me disappearing.";
+      }
+
+      if (need === "support") {
+        middle = "I don’t need you to fix everything. I could just use some support and a little patience right now.";
+      }
+
+      if (need === "sorry") {
+        middle = "I’m sorry for the way this may affect you. I’m not saying that to make you responsible for it. I just want to acknowledge it.";
+      }
+
+      if (need === "boundary") {
+        middle = "I need to set a boundary so I can stay steady and not make this harder than it already is.";
+      }
+
+      if (need === "struggling") {
+        middle = "I’m struggling more than I’ve been letting on, and I don’t want to keep carrying it silently.";
+      }
+
+      if (raw.length > 0) {
+        middle += "\n\nThe simplest version is: " + cleanRaw(raw);
+      }
+
+      let close = "If you have a few minutes, I’d be grateful if you could check in with me. You don’t have to have the perfect answer.";
+
+      if (person === "sponsor") {
+        close = "If you’re available, I’d really appreciate a call or a check-in. I’m trying to be honest before this gets worse.";
+      }
+
+      if (person === "boss") {
+        close = "I’m not asking you to solve it. I just wanted to communicate clearly and figure out the next responsible step.";
+      }
+
+      if (person === "child") {
+        close = "This is grown-up stuff, and it is not your job to fix. I just want you to know I love you and I’m taking care of it.";
+      }
+
+      if (tone === "hopeful") {
+        close += " I’m trying to handle this differently than I have before.";
+      }
+
+      if (tone === "accountable") {
+        close += " I know my choices matter, and I’m trying to take responsibility instead of making excuses.";
+      }
+
+      if (tone === "short") {
+        currentDraft = `${opener}\n\n${middle}\n\nCan you check in with me when you have a minute?`;
+      } else {
+        currentDraft = `${opener}\n\n${middle}\n\n${close}`;
+      }
+
+      renderDraft();
+      currentStep = 5;
+      showStep(5);
+    }
+
+    function cleanRaw(text) {
+      return text
+        .replace(/\s+/g, " ")
+        .replace(/^i /i, "I ")
+        .trim();
+    }
+
+    function tuneDraft(type) {
+      if (type === "shorter") {
+        currentDraft = "Hey. I’m having a hard moment and I don’t want to hide it. I could use a check-in when you have a minute.";
+      }
+
+      if (type === "softer") {
+        currentDraft = currentDraft.replace("I need to be honest with you.", "This is hard for me to say, but I want to be honest with you.");
+        currentDraft += "\n\nI’m not expecting you to fix this. I just wanted to let you in instead of shutting down.";
+      }
+
+      if (type === "direct") {
+        currentDraft = "Hey. I’m struggling right now and I need support. I don’t want to make this worse by hiding it. Can you check in with me today?";
+      }
+
+      if (type === "accountable") {
+        currentDraft += "\n\nI know I’m responsible for what I do next. I’m trying to choose honesty instead of avoidance.";
+      }
+
+      if (type === "hopeful") {
+        currentDraft += "\n\nI’m not where I want to be, but I’m trying to take the next right step.";
+      }
+
+      if (type === "less") {
+        currentDraft = "Hey. I wanted to let you know I’m having a difficult moment. I’m taking a pause and trying to handle it carefully. A check-in would help if you’re available.";
+      }
+
+      renderDraft();
+    }
+
+    function renderDraft() {
+      document.getElementById("draftText").textContent = currentDraft;
+      document.getElementById("copied").classList.remove("show");
+    }
+
+    function copyDraft() {
+      navigator.clipboard.writeText(currentDraft);
+      document.getElementById("copied").classList.add("show");
+    }
+
+    function restart() {
+      currentStep = 0;
+      person = "someone";
+      need = "honest";
+      tone = "honest";
+      currentDraft = "";
+      document.getElementById("rawText").value = "";
+      document.querySelectorAll(".option").forEach(option => option.classList.remove("selected"));
+      showStep(0);
+    }
+  </script>
+</body>
+</html>
