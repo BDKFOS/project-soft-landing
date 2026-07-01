@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Project Soft Landing | Calm Support for Recovery and Addiction</title>
-  <meta name="description" content="Free, private AI-guided support for recovery, sobriety, cravings, hard conversations, next steps, and helping someone you love through addiction." />
+  <meta name="description" content="Free, private support for recovery, sobriety, cravings, hard conversations, next steps, and helping someone you love through addiction." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Project Soft Landing" />
 
@@ -22,7 +22,7 @@
   <meta name="apple-mobile-web-app-title" content="Soft Landing">
 
   <meta property="og:title" content="Project Soft Landing | Calm Support for Recovery and Addiction" />
-  <meta property="og:description" content="Free, private AI-guided support for recovery, sobriety, hard conversations, next steps, and helping someone you love through addiction." />
+  <meta property="og:description" content="Free, private support for recovery, sobriety, hard conversations, next steps, and helping someone you love through addiction." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://projectsoftlanding.com/" />
   <meta property="og:site_name" content="Project Soft Landing" />
@@ -30,7 +30,7 @@
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Project Soft Landing | Calm Support for Recovery" />
-  <meta name="twitter:description" content="Private, practical AI-guided support for difficult moments in recovery, sobriety, and addiction." />
+  <meta name="twitter:description" content="Private, practical support for recovery, sobriety, cravings, difficult conversations, and supporting someone you love through addiction." />
   <meta name="twitter:image" content="https://projectsoftlanding.com/images/android-chrome-512x512.png" />
 
   <script type="application/ld+json">
@@ -39,7 +39,7 @@
     "@type": "WebSite",
     "name": "Project Soft Landing",
     "url": "https://projectsoftlanding.com/",
-    "description": "Free, private AI-guided support for recovery, sobriety, cravings, hard conversations, next steps, and helping someone you love through addiction.",
+    "description": "Free, private support for recovery, sobriety, cravings, hard conversations, next steps, and helping someone you love through addiction.",
     "publisher": {
       "@type": "Organization",
       "name": "Project Soft Landing",
@@ -161,10 +161,12 @@
     }
 
     .brand-subtitle {
-      font-size: 1.25rem;
-      color: var(--sage-dark);
-      font-weight: 500;
-    }
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.55;
+    color: var(--sage-dark);
+    font-weight: 500;
+  }
 
     .hero-wrap {
       position: relative;
@@ -411,14 +413,24 @@
     }
 
     footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0 42px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      color: var(--muted);
-    }
+    border-top: 1px solid var(--border);
+    padding: 38px 0 48px;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    color: var(--muted);
+  }
 
+    footer a {
+    color: var(--sage-dark);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+    footer a:hover {
+    text-decoration: underline;
+  }
+    
     .footer-logo {
       width: 46px;
       height: 46px;
@@ -439,6 +451,20 @@
       font-weight: 700;
     }
 
+    .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+    .footer-links {
+    line-height: 1.6;
+  }
+
+    .footer-built {
+    color: var(--muted);
+    font-size: .92rem;
+  }
     .divider {
       width: 1px;
       height: 24px;
@@ -548,7 +574,10 @@
         <div class="logo">SL</div>
         <div>
           <div class="brand-title">Project Soft Landing</div>
-          <div class="brand-subtitle">Calm support for difficult moments</div>
+          <div class="brand-subtitle">
+  Private tools for recovery, sobriety, cravings, difficult conversations, and supporting someone you love through addiction.
+
+</div>
         </div>
       </div>
     </header>
@@ -557,12 +586,14 @@
   <div class="hero-wrap">
     <main class="page">
       <section class="hero">
-        <div class="eyebrow">PRIVATE. SIMPLE. NO ACCOUNT REQUIRED.</div>
+        <div class="eyebrow">PRIVATE. FREE. NO ACCOUNT REQUIRED.</div>
 
         <h1>Small support when things feel too heavy.</h1>
 
         <p>
-          Project Soft Landing offers calm, practical guidance for recovery, sobriety, hard conversations, and the people who love someone through addiction.
+          Choose the experience that fits what you're facing right now. Each one is private, free, and designed to help you take one small step forward.
+
+          Whether you're trying to stay sober, support someone you love, or simply make it through today, there's a place to begin.
         </p>
 
         <div class="actions">
@@ -671,11 +702,30 @@
     </section>
 
     <footer>
-      <div class="footer-logo">SL</div>
-      <div class="footer-brand">Project Soft Landing</div>
-      <div class="divider"></div>
-      <div>Built with care.</div>
-    </footer>
+  <div class="footer-logo">SL</div>
+
+  <div class="footer-content">
+
+    <div class="footer-brand">
+      Project Soft Landing
+    </div>
+
+    <div class="footer-links">
+      <a href="/">Home</a> ·
+      <a href="/about.html">About</a> ·
+      <a href="/faq.html">FAQ</a> ·
+      <a href="/crisis-resources.html">Crisis Resources</a> ·
+      <a href="/privacy.html">Privacy</a> ·
+      <a href="/terms.html">Terms</a>
+    </div>
+
+    <div class="footer-built">
+      Built with care.
+    </div>
+
+  </div>
+</footer>
+    
   </main>
 </body>
 </html>
