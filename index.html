@@ -168,6 +168,31 @@
     font-weight: 500;
   }
 
+    .tool-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .tool-nav a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 999px;
+    background: #fffaf3;
+    border: 1px solid var(--border);
+    color: var(--sage-dark);
+    font-size: .94rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .tool-nav a:hover {
+    background: var(--sage-soft);
+    border-color: rgba(85, 115, 95, .35);
+  }
+    
     .hero-wrap {
       position: relative;
       overflow: hidden;
@@ -574,10 +599,16 @@
         <div class="logo">SL</div>
         <div>
           <div class="brand-title">Project Soft Landing</div>
-          <div class="brand-subtitle">
-  Private tools for recovery, sobriety, cravings, difficult conversations, and supporting someone you love through addiction.
+         <div class="brand-subtitle">
+    Private tools for recovery, sobriety, cravings, difficult conversations, and supporting someone you love through addiction.
+  </div>
 
-</div>
+  <nav class="tool-nav" aria-label="Primary tools">
+    <a href="/pause.html">The Pause</a>
+    <a href="/find-the-words.html">Find the Words</a>
+    <a href="/next-step.html">Next Step</a>
+    <a href="/help-me-help-them.html">Help Me Help Them</a>
+  </nav>
         </div>
       </div>
     </header>
