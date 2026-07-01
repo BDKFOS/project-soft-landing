@@ -62,7 +62,7 @@ export default async function handler(req, res) {
     }
 
     const response = await client.responses.create({
-      model: "gpt-5.5-mini",
+      model: "gpt-5.4-mini",
       instructions,
       input: JSON.stringify(input),
       max_output_tokens: 450
