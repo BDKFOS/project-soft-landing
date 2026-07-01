@@ -4,8 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Find the Words | Project Soft Landing</title>
-  <meta name="description" content="Find calm, honest words for difficult recovery conversations." />
+  <title>Find the Words | Recovery Message Helper | Project Soft Landing</title>
+  <meta name="description" content="Find calm, honest words for difficult recovery conversations. Write a message to a spouse, family member, sponsor, friend, or coworker when you do not know what to say." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Project Soft Landing" />
+  <meta name="application-name" content="Project Soft Landing" />
+  <meta name="apple-mobile-web-app-title" content="Soft Landing" />
+  <meta name="theme-color" content="#819b86" />
+
+  <link rel="canonical" href="https://projectsoftlanding.com/find-the-words.html" />
+
+  <link rel="icon" href="/images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta property="og:site_name" content="Project Soft Landing" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Find the Words | Project Soft Landing" />
+  <meta property="og:description" content="A calm recovery message helper for difficult conversations when you do not know what to say." />
+  <meta property="og:url" content="https://projectsoftlanding.com/find-the-words.html" />
+  <meta property="og:image" content="https://projectsoftlanding.com/images/android-chrome-512x512.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Find the Words | Project Soft Landing" />
+  <meta name="twitter:description" content="Find calm, honest words for difficult recovery conversations." />
+  <meta name="twitter:image" content="https://projectsoftlanding.com/images/android-chrome-512x512.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Find the Words",
+    "url": "https://projectsoftlanding.com/find-the-words.html",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "description": "A calm message-writing helper for difficult recovery conversations.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Project Soft Landing",
+      "url": "https://projectsoftlanding.com/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,6 +222,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: .7;
     }
 
     .primary {
@@ -395,7 +447,7 @@
           <button class="option" onclick="selectTone(this, 'hopeful')">Hopeful</button>
         </div>
         <div class="actions">
-          <button class="primary" onclick="generateDraft()">Find the words</button>
+          <button class="primary" id="generateButton" onclick="generateDraft()">Find the words</button>
         </div>
       </section>
 
@@ -415,7 +467,7 @@
           <button class="tune" onclick="tuneDraft('direct')">More direct</button>
           <button class="tune" onclick="tuneDraft('accountable')">Add accountability</button>
           <button class="tune" onclick="tuneDraft('hopeful')">More hopeful</button>
-          <button class="tune" onclick="tuneDraft('less')">Less emotional</button>
+          <button class="tune" onclick="tuneDraft('less emotional')">Less emotional</button>
         </div>
 
         <div class="actions">
@@ -427,7 +479,7 @@
         <div class="copied" id="copied">Copied.</div>
 
         <div class="tiny">
-          You can change anything before sending. This page does not send messages for you.
+          You can change anything before sending. This page does not send messages for you. Project Soft Landing is not medical advice, therapy, or emergency support.
         </div>
       </section>
     </main>
@@ -476,145 +528,81 @@
       markSelected("toneOptions", button);
     }
 
-    function personName() {
-      const names = {
-        partner: "you",
-        parent: "you",
-        child: "you",
-        friend: "you",
-        sponsor: "you",
-        boss: "you",
-        family: "you",
-        someone: "you"
-      };
-      return names[person] || "you";
+    async function callSoftLandingAI(payload) {
+      const response = await fetch("/api/softlanding", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      return data.text;
     }
 
-    function generateDraft() {
+    async function generateDraft() {
       const raw = document.getElementById("rawText").value.trim();
-      let opener = "Hey. I wanted to say this clearly instead of avoiding it.";
 
-      if (person === "boss") {
-        opener = "Hi. I wanted to be direct and respectful about something I’m dealing with.";
-      }
-
-      if (person === "child") {
-        opener = "Hey kiddo. I want to tell you something in a simple way.";
-      }
-
-      if (tone === "gentle") {
-        opener = "Hey. This is hard for me to say, but I want to say it gently and honestly.";
-      }
-
-      if (tone === "direct") {
-        opener = "Hey. I need to be honest with you.";
-      }
-
-      if (tone === "short") {
-        opener = "Hey. I’m having a hard moment and I wanted to tell you.";
-      }
-
-      let middle = "I’m struggling right now, and I don’t want to hide it or pretend I’m fine.";
-
-      if (need === "help") {
-        middle = "I’m having a hard time and I think I need help instead of trying to handle it alone.";
-      }
-
-      if (need === "honest") {
-        middle = "I want to be honest because hiding it usually makes things worse.";
-      }
-
-      if (need === "space") {
-        middle = "I need a little space to get steady, but I don’t want that to come across as me disappearing.";
-      }
-
-      if (need === "support") {
-        middle = "I don’t need you to fix everything. I could just use some support and a little patience right now.";
-      }
-
-      if (need === "sorry") {
-        middle = "I’m sorry for the way this may affect you. I’m not saying that to make you responsible for it. I just want to acknowledge it.";
-      }
-
-      if (need === "boundary") {
-        middle = "I need to set a boundary so I can stay steady and not make this harder than it already is.";
-      }
-
-      if (need === "struggling") {
-        middle = "I’m struggling more than I’ve been letting on, and I don’t want to keep carrying it silently.";
-      }
-
-      if (raw.length > 0) {
-        middle += "\n\nThe simplest version is: " + cleanRaw(raw);
-      }
-
-      let close = "If you have a few minutes, I’d be grateful if you could check in with me. You don’t have to have the perfect answer.";
-
-      if (person === "sponsor") {
-        close = "If you’re available, I’d really appreciate a call or a check-in. I’m trying to be honest before this gets worse.";
-      }
-
-      if (person === "boss") {
-        close = "I’m not asking you to solve it. I just wanted to communicate clearly and figure out the next responsible step.";
-      }
-
-      if (person === "child") {
-        close = "This is grown-up stuff, and it is not your job to fix. I just want you to know I love you and I’m taking care of it.";
-      }
-
-      if (tone === "hopeful") {
-        close += " I’m trying to handle this differently than I have before.";
-      }
-
-      if (tone === "accountable") {
-        close += " I know my choices matter, and I’m trying to take responsibility instead of making excuses.";
-      }
-
-      if (tone === "short") {
-        currentDraft = `${opener}\n\n${middle}\n\nCan you check in with me when you have a minute?`;
-      } else {
-        currentDraft = `${opener}\n\n${middle}\n\n${close}`;
-      }
-
+      currentDraft = "Finding the words...";
       renderDraft();
       currentStep = 5;
       showStep(5);
+
+      try {
+        currentDraft = await callSoftLandingAI({
+          mode: "words",
+          input: {
+            rawText: raw,
+            person,
+            need,
+            tone,
+            task: "Create a sendable message draft."
+          }
+        });
+
+        renderDraft();
+      } catch (error) {
+        console.error(error);
+        currentDraft = "I’m sorry, something went wrong generating your message. Please try again in a minute.";
+        renderDraft();
+      }
     }
 
-    function cleanRaw(text) {
-      return text
-        .replace(/\s+/g, " ")
-        .replace(/^i /i, "I ")
-        .trim();
-    }
+    async function tuneDraft(adjustment) {
+      if (!currentDraft || currentDraft === "Finding the words...") return;
 
-    function tuneDraft(type) {
-      if (type === "shorter") {
-        currentDraft = "Hey. I’m having a hard moment and I don’t want to hide it. I could use a check-in when you have a minute.";
-      }
+      const previousDraft = currentDraft;
 
-      if (type === "softer") {
-        currentDraft = currentDraft.replace("I need to be honest with you.", "This is hard for me to say, but I want to be honest with you.");
-        currentDraft += "\n\nI’m not expecting you to fix this. I just wanted to let you in instead of shutting down.";
-      }
-
-      if (type === "direct") {
-        currentDraft = "Hey. I’m struggling right now and I need support. I don’t want to make this worse by hiding it. Can you check in with me today?";
-      }
-
-      if (type === "accountable") {
-        currentDraft += "\n\nI know I’m responsible for what I do next. I’m trying to choose honesty instead of avoidance.";
-      }
-
-      if (type === "hopeful") {
-        currentDraft += "\n\nI’m not where I want to be, but I’m trying to take the next right step.";
-      }
-
-      if (type === "less") {
-        currentDraft = "Hey. I wanted to let you know I’m having a difficult moment. I’m taking a pause and trying to handle it carefully. A check-in would help if you’re available.";
-      }
-
+      currentDraft = "Adjusting the message...";
       renderDraft();
+
+      try {
+        currentDraft = await callSoftLandingAI({
+          mode: "words",
+          input: {
+            rawText: document.getElementById("rawText").value.trim(),
+            person,
+            need,
+            tone,
+            existingDraft: previousDraft,
+            adjustment,
+            task: `Rewrite the existing draft to be ${adjustment}. Output only the revised message.`
+          }
+        });
+
+        renderDraft();
+      } catch (error) {
+        console.error(error);
+        currentDraft = previousDraft;
+        renderDraft();
+        alert("Something went wrong adjusting the message. Please try again.");
+      }
     }
 
     function renderDraft() {
