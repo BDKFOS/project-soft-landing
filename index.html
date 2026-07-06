@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Project Soft Landing | Calm Support for Recovery and Addiction</title>
-  <meta name="description" content="Free, private support for recovery, sobriety, cravings, hard conversations, next steps, and helping someone you love through addiction." />
+  <meta name="description" content="Free, private support for recovery, sobriety, cravings, difficult conversations, sober support, recovery resources, and helping someone you love through addiction." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Project Soft Landing" />
 
@@ -22,7 +22,7 @@
   <meta name="apple-mobile-web-app-title" content="Soft Landing">
 
   <meta property="og:title" content="Project Soft Landing | Calm Support for Recovery and Addiction" />
-  <meta property="og:description" content="Free, private support for recovery, sobriety, hard conversations, next steps, and helping someone you love through addiction." />
+  <meta property="og:description" content="Free, private support for recovery, sobriety, cravings, difficult conversations, sober support, and recovery resources." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://projectsoftlanding.com/" />
   <meta property="og:site_name" content="Project Soft Landing" />
@@ -39,7 +39,7 @@
     "@type": "WebSite",
     "name": "Project Soft Landing",
     "url": "https://projectsoftlanding.com/",
-    "description": "Free, private support for recovery, sobriety, cravings, hard conversations, next steps, and helping someone you love through addiction.",
+    "description": "Free, private support for recovery, sobriety, cravings, difficult conversations, sober support, recovery resources, and helping someone you love through addiction.",
     "publisher": {
       "@type": "Organization",
       "name": "Project Soft Landing",
@@ -56,39 +56,21 @@
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Project Soft Landing Experiences",
+    "name": "Project Soft Landing Categories",
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "The Pause",
-        "url": "https://projectsoftlanding.com/pause.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Find the Words",
-        "url": "https://projectsoftlanding.com/find-the-words.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Find My Next Step",
-        "url": "https://projectsoftlanding.com/next-step.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "Help Me Help Them",
-        "url": "https://projectsoftlanding.com/help-me-help-them.html"
-      }
+      {"@type": "ListItem", "position": 1, "name": "Tough Moments", "url": "https://projectsoftlanding.com/#tough-moments"},
+      {"@type": "ListItem", "position": 2, "name": "Difficult Conversations", "url": "https://projectsoftlanding.com/#difficult-conversations"},
+      {"@type": "ListItem", "position": 3, "name": "Sober Support", "url": "https://projectsoftlanding.com/#sober-support"},
+      {"@type": "ListItem", "position": 4, "name": "Understanding Myself", "url": "https://projectsoftlanding.com/#understanding-myself"},
+      {"@type": "ListItem", "position": 5, "name": "Recovery & Growth", "url": "https://projectsoftlanding.com/#recovery-growth"},
+      {"@type": "ListItem", "position": 6, "name": "Recovery Resources", "url": "https://projectsoftlanding.com/#recovery-resources"}
     ]
   }
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -99,367 +81,507 @@
       --sage: #6f8d7a;
       --sage-dark: #55735f;
       --sage-soft: #dfe8dc;
-      --peach-soft: #f3dcc4;
+      --blue-soft: #dce8ef;
+      --blue: #4f7898;
+      --gold-soft: #efe4bd;
+      --gold: #a9872d;
+      --plum-soft: #e8dcec;
+      --plum: #7e5a8f;
+      --rust-soft: #efd9c5;
+      --rust: #bd743a;
       --border: #dfd6ca;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: "Inter", sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at 7% 8%, rgba(220, 169, 111, .22), transparent 260px),
-        radial-gradient(circle at 93% 20%, rgba(119, 150, 129, .13), transparent 360px),
-        var(--bg);
+      background: linear-gradient(180deg, #fffdf8 0%, var(--bg) 52%, #fffdf8 100%);
     }
 
+    a { color: inherit; }
+
     .page {
-      width: min(1120px, calc(100% - 48px));
+      width: min(1180px, calc(100% - 48px));
       margin: 0 auto;
     }
 
-    .topbar {
-      margin-top: 42px;
-      background: rgba(255, 253, 248, .88);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 26px 34px;
-      box-shadow: 0 22px 70px rgba(56, 48, 39, .12);
+    .site-header {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 253, 248, .94);
+      border-bottom: 1px solid rgba(223, 214, 202, .78);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 15px;
+      min-width: 250px;
+      text-decoration: none;
     }
 
     .logo {
-      width: 88px;
-      height: 88px;
-      border-radius: 24px;
+      width: 58px;
+      height: 58px;
+      border-radius: 15px;
       background: linear-gradient(145deg, #819b86, #5e7d68);
       display: grid;
       place-items: center;
       color: white;
       font-family: "Lora", serif;
-      font-size: 2.45rem;
-      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: 700;
       letter-spacing: -.13em;
-      padding-right: 4px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 16px 34px rgba(87, 113, 94, .25);
+      padding-right: 3px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 13px 28px rgba(87, 113, 94, .18);
     }
 
-    .brand-title {
-      font-size: 2rem;
+    .brand-name {
+      font-size: 1.25rem;
       font-weight: 800;
-      letter-spacing: -.055em;
-      margin-bottom: 10px;
+      letter-spacing: -.045em;
+      margin-bottom: 3px;
     }
 
-    .brand-subtitle {
-    max-width: 760px;
-    font-size: 1.08rem;
-    line-height: 1.55;
-    color: var(--sage-dark);
-    font-weight: 500;
-  }
+    .brand-line {
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.25;
+    }
 
-    .tool-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 22px;
-  }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-  .tool-nav a {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 15px;
-    border-radius: 999px;
-    background: #fffaf3;
-    border: 1px solid var(--border);
-    color: var(--sage-dark);
-    font-size: .94rem;
-    font-weight: 800;
-    text-decoration: none;
-  }
+    .nav-links a {
+      text-decoration: none;
+      color: #30363b;
+      font-weight: 800;
+      font-size: .92rem;
+      padding: 10px 4px;
+      border-radius: 999px;
+    }
 
-  .tool-nav a:hover {
-    background: var(--sage-soft);
-    border-color: rgba(85, 115, 95, .35);
-  }
-    
+    .nav-links a:hover { color: var(--sage-dark); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #7f9a85, #617f6a);
+      color: white;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 15px 34px rgba(90, 119, 98, .22);
+      white-space: nowrap;
+    }
+
     .hero-wrap {
       position: relative;
+      min-height: 670px;
       overflow: hidden;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-wrap::before {
-      content: "";
-      position: absolute;
-      right: -180px;
-      bottom: -220px;
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      background: rgba(119, 150, 129, .15);
+      background:
+        linear-gradient(90deg, rgba(255,253,248,.95) 0%, rgba(255,253,248,.82) 38%, rgba(255,253,248,.15) 70%, rgba(255,253,248,.05) 100%),
+        linear-gradient(180deg, rgba(255,253,248,0) 0%, rgba(255,253,248,0) 70%, var(--bg) 100%),
+        url("/images/MountainRiverStones.png");
+      background-size: cover;
+      background-position: center center;
+      border-bottom: 1px solid rgba(223, 214, 202, .5);
     }
 
     .hero-wrap::after {
       content: "";
       position: absolute;
-      right: -180px;
-      bottom: -120px;
-      width: 720px;
-      height: 720px;
-      border-radius: 50%;
-      background:
-        radial-gradient(
-          circle,
-          rgba(111,141,122,.10),
-          rgba(111,141,122,.03) 45%,
-          transparent 72%
-        );
-      filter: blur(10px);
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 130px;
+      background: linear-gradient(180deg, rgba(247,243,236,0), var(--bg) 82%);
       pointer-events: none;
     }
 
     .hero {
       position: relative;
       z-index: 1;
-      padding: 98px 0 76px;
-      max-width: 820px;
-    }
-
-    .eyebrow {
-      color: var(--sage-dark);
-      font-weight: 800;
-      letter-spacing: .18em;
-      font-size: 1rem;
-      margin-bottom: 48px;
+      padding: 74px 0 80px;
+      max-width: 620px;
     }
 
     h1 {
-      font-size: clamp(4.1rem, 7.6vw, 6.8rem);
-      line-height: 1.05;
-      letter-spacing: -.08em;
-      margin: 0 0 34px;
-      font-weight: 800;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 1.58rem;
-      line-height: 1.55;
-      letter-spacing: -.02em;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 38px;
-      margin-top: 46px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 19px 34px;
-      border-radius: 999px;
-      background: linear-gradient(145deg, #7f9a85, #617f6a);
-      color: white;
-      text-decoration: none;
-      font-size: 1.12rem;
+      font-family: "Lora", serif;
+      font-size: clamp(3.65rem, 6vw, 5.9rem);
+      line-height: .98;
+      letter-spacing: -.065em;
+      margin: 0 0 22px;
       font-weight: 700;
-      box-shadow: 0 18px 34px rgba(90, 119, 98, .24);
     }
 
-    .soft-link {
+    .hero em {
       color: var(--sage-dark);
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-bottom: 2px solid var(--sage-dark);
-      padding-bottom: 5px;
+      font-style: italic;
     }
 
-    .note {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-top: 54px;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .note-icon {
+    .hero-line {
       width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: #f0e8dc;
+      height: 2px;
+      background: var(--sage-dark);
+      margin: 28px 0 24px;
+    }
+
+    .hero-copy {
+      color: #2f373d;
+      font-size: 1.16rem;
+      line-height: 1.72;
+      max-width: 560px;
+      margin: 0;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+      max-width: 660px;
+    }
+
+    .trust-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+      color: #344047;
+      font-size: .86rem;
+      line-height: 1.38;
+      align-items: center;
+    }
+
+    .trust-icon {
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
-      color: var(--text);
+      color: var(--sage-dark);
+    }
+
+    .trust-item strong {
+      color: #1f252b;
+      display: block;
+      font-size: .9rem;
+      margin-bottom: 2px;
+    }
+
+    .alone-card {
+      margin-top: 38px;
+      width: min(500px, 100%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,253,248,.82);
+      border: 1px solid rgba(223, 214, 202, .72);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: 0 18px 50px rgba(56, 48, 39, .14);
+      backdrop-filter: blur(10px);
+    }
+
+    .alone-card .heart {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fffdf8;
+      color: var(--sage-dark);
+      border: 1px solid var(--border);
       flex: 0 0 auto;
     }
 
-    .section-intro {
-      padding: 56px 0 24px;
-      max-width: 760px;
+    .alone-card strong {
+      display: block;
+      margin-bottom: 5px;
+      letter-spacing: -.02em;
     }
 
-    .section-intro h2 {
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      line-height: 1.05;
-      letter-spacing: -.065em;
-      margin: 0 0 18px;
-    }
-
-    .section-intro p {
-      margin: 0;
+    .alone-card span {
       color: var(--muted);
-      font-size: 1.14rem;
-      line-height: 1.7;
+      font-size: .92rem;
+      line-height: 1.35;
     }
 
-    .cards {
+    .section-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 22px 0 34px;
+    }
+
+    .section-head h2 {
+      font-family: "Lora", serif;
+      font-size: clamp(2.25rem, 4vw, 3.3rem);
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      margin: 0 0 12px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .section-mini-line {
+      width: 50px;
+      height: 2px;
+      background: var(--sage-dark);
+      margin: 18px auto 0;
+    }
+
+    .category-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      padding: 20px 0 82px;
+      padding-bottom: 64px;
     }
 
-    .card {
-      background: rgba(255, 253, 248, .82);
+    .category-card {
+      background: rgba(255, 253, 248, .92);
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 30px 24px;
-      box-shadow: 0 18px 45px rgba(56, 48, 39, .07);
-      text-decoration: none;
-      color: inherit;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      padding: 24px;
+      box-shadow: 0 18px 50px rgba(56, 48, 39, .07);
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 24px 60px rgba(56, 48, 39, .10);
-      border-color: rgba(85, 115, 95, .35);
+    .category-top {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
-    .icon-circle {
-      width: 74px;
-      height: 74px;
+    .cat-icon {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       display: grid;
       place-items: center;
-      margin-bottom: 28px;
       color: #26342d;
     }
 
-    .card:nth-child(1) .icon-circle,
-    .card:nth-child(3) .icon-circle {
-      background: var(--sage-soft);
-    }
+    .tough .cat-icon { background: var(--sage-soft); color: var(--sage-dark); }
+    .convo .cat-icon { background: var(--blue-soft); color: var(--blue); }
+    .support .cat-icon { background: var(--rust-soft); color: var(--rust); }
+    .self .cat-icon { background: var(--plum-soft); color: var(--plum); }
+    .growth .cat-icon { background: var(--gold-soft); color: var(--gold); }
+    .resources .cat-icon { background: var(--sage-soft); color: var(--sage-dark); }
 
-    .card:nth-child(2) .icon-circle,
-    .card:nth-child(4) .icon-circle {
-      background: var(--peach-soft);
-    }
-
-    .card h3 {
-      font-size: 1.75rem;
+    .category-card h3 {
+      font-family: "Lora", serif;
+      font-size: 1.52rem;
       line-height: 1.05;
-      letter-spacing: -.055em;
-      margin: 0 0 18px;
+      letter-spacing: -.045em;
+      margin: 0 0 7px;
     }
 
-    .mini-line {
-      width: 44px;
-      height: 2px;
-      background: var(--sage-dark);
-      margin-bottom: 24px;
-    }
-
-    .card:nth-child(2) .mini-line,
-    .card:nth-child(4) .mini-line {
-      background: #d6a16d;
-    }
-
-    .card p {
-      margin: 0;
+    .category-card .desc {
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.68;
+      font-size: .94rem;
+      line-height: 1.45;
+      margin: 0;
     }
 
-    .card-cta {
-      display: inline-block;
-      margin-top: 24px;
-      color: var(--sage-dark);
-      font-weight: 800;
+    .tool-list {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 6px;
+      flex: 1;
+    }
+
+    .tool-link,
+    .tool-coming {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
       font-size: .95rem;
+      border-radius: 12px;
     }
 
-    .why {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 70px;
-      padding: 0 22px 78px;
-    }
+    .tool-link:hover { color: var(--sage-dark); }
+    .arrow { color: currentColor; font-weight: 900; }
 
-    .why h2 {
-      font-size: 2.35rem;
-      letter-spacing: -.055em;
-      line-height: 1.05;
-      margin: 0;
-    }
-
-    .why .mini-line {
-      margin-top: 24px;
-    }
-
-    .why-copy {
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: #eef0ec;
       color: var(--muted);
-      font-size: 1.12rem;
-      line-height: 1.75;
-      max-width: 680px;
+      font-size: .70rem;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
-    .why-copy p {
-      margin: 0 0 26px;
+    .coming-name {
+      color: #343a40;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .category-cta {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: var(--sage-dark);
+      font-weight: 900;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      gap: 8px;
+      font-size: .94rem;
+    }
+
+    .convo .category-cta { color: var(--blue); }
+    .support .category-cta { color: var(--rust); }
+    .self .category-cta { color: var(--plum); }
+    .growth .category-cta { color: var(--gold); }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+      margin-top: 4px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .resource-chip {
+      color: var(--text);
+      font-size: .78rem;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 12px;
+      background: rgba(255, 250, 243, .65);
+      border: 1px solid rgba(223, 214, 202, .55);
+      text-align: center;
+    }
+
+    .resource-chip:hover {
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+    }
+
+    .why-panel {
+      margin: 4px 0 72px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(223,232,220,.58), rgba(255,253,248,.92));
+      padding: clamp(26px, 4vw, 42px);
+      display: grid;
+      grid-template-columns: 120px 1fr 320px;
+      gap: 34px;
+      align-items: center;
+      box-shadow: 0 18px 50px rgba(56, 48, 39, .06);
+    }
+
+    .why-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 1px solid rgba(85, 115, 95, .45);
+      color: var(--sage-dark);
+      display: grid;
+      place-items: center;
+    }
+
+    .why-panel h2 {
+      font-family: "Lora", serif;
+      font-size: clamp(1.85rem, 3vw, 2.55rem);
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      margin: 0 0 10px;
+    }
+
+    .why-panel p {
+      color: var(--muted);
+      line-height: 1.62;
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .quote-card {
+      background: rgba(255,253,248,.88);
+      border: 1px solid rgba(223, 214, 202, .72);
+      border-radius: 22px;
+      padding: 24px;
+      color: var(--text);
+      box-shadow: 0 14px 38px rgba(56, 48, 39, .06);
+    }
+
+    .quote-card .quote-mark {
+      font-family: "Lora", serif;
+      color: rgba(85, 115, 95, .35);
+      font-size: 3.4rem;
+      line-height: .6;
+      margin-bottom: 12px;
+    }
+
+    .quote-card p {
+      color: #3c4248;
+      font-size: 1rem;
+      line-height: 1.55;
+      margin: 0;
     }
 
     footer {
-    border-top: 1px solid var(--border);
-    padding: 38px 0 48px;
-    display: flex;
-    align-items: flex-start;
-    gap: 22px;
-    color: var(--muted);
-  }
+      border-top: 1px solid var(--border);
+      padding: 38px 0 48px;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr 1.1fr;
+      gap: 32px;
+      color: var(--muted);
+    }
 
-    footer a {
-    color: var(--sage-dark);
-    font-weight: 700;
-    text-decoration: none;
-  }
+    .footer-brand-block {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
 
-    footer a:hover {
-    text-decoration: underline;
-  }
-    
     .footer-logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 13px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       background: linear-gradient(145deg, #819b86, #5e7d68);
       display: grid;
       place-items: center;
@@ -471,34 +593,65 @@
       flex: 0 0 auto;
     }
 
-    .footer-brand {
+    .footer-title {
       color: var(--text);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-bottom: 6px;
+    }
+
+    .footer-small {
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    .footer-col h4 {
+      color: var(--text);
+      margin: 0 0 12px;
+      font-size: .95rem;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      margin-bottom: 9px;
       font-weight: 700;
     }
 
-    .footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+    .footer-col a:hover { color: var(--sage-dark); }
 
-    .footer-links {
-    line-height: 1.6;
-  }
+    .crisis-box {
+      background: rgba(255,253,248,.82);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+    }
 
-    .footer-built {
-    color: var(--muted);
-    font-size: .92rem;
-  }
-    .divider {
-      width: 1px;
-      height: 24px;
-      background: var(--border);
+    .crisis-box strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .crisis-box p {
+      margin: 0;
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    .copyright {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: .85rem;
+      color: var(--muted);
+      padding-top: 8px;
     }
 
     svg {
-      width: 36px;
-      height: 36px;
+      width: 30px;
+      height: 30px;
       stroke: currentColor;
       fill: none;
       stroke-width: 1.8;
@@ -506,257 +659,416 @@
       stroke-linejoin: round;
     }
 
-    @media (max-width: 1020px) {
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 850px) {
-      .page {
-        width: min(100% - 32px, 1120px);
+    @media (max-width: 1080px) {
+      .nav {
+        align-items: flex-start;
+        flex-wrap: wrap;
       }
 
-      .topbar {
-        margin-top: 18px;
-        padding: 18px;
-        border-radius: 24px;
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        padding-bottom: 10px;
       }
 
-      .logo {
-        width: 60px;
-        height: 60px;
-        font-size: 1.65rem;
-        border-radius: 18px;
-      }
-
-      .brand {
-        gap: 16px;
-      }
-
-      .brand-title {
-        font-size: 1.25rem;
-        margin-bottom: 4px;
-      }
-
-      .brand-subtitle {
-        font-size: .92rem;
+      .hero-wrap {
+        min-height: auto;
+        background-position: 58% center;
       }
 
       .hero {
-        padding: 70px 0 58px;
+        padding: 56px 0 72px;
       }
 
-      .eyebrow {
-        margin-bottom: 32px;
-        font-size: .82rem;
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      h1 {
-        font-size: 3.55rem;
-      }
-
-      .hero p {
-        font-size: 1.18rem;
-      }
-
-      .actions {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .section-intro {
-        padding-top: 44px;
-      }
-
-      .cards {
+      .why-panel {
         grid-template-columns: 1fr;
-      }
-
-      .why {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .hero-wrap::after {
-        display: none;
       }
 
       footer {
-        flex-wrap: wrap;
+        grid-template-columns: 1fr 1fr;
       }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav {
+        min-height: auto;
+        padding: 14px 0;
+      }
+
+      .brand { min-width: auto; }
+
+      .logo {
+        width: 52px;
+        height: 52px;
+        font-size: 1.38rem;
+      }
+
+      .brand-name { font-size: 1.02rem; }
+      .brand-line { font-size: .78rem; }
+
+      .nav-cta { width: 100%; }
+      .nav-links { gap: 6px; }
+
+      .nav-links a {
+        font-size: .82rem;
+        padding: 8px 8px;
+      }
+
+      .hero-wrap {
+        background:
+          linear-gradient(180deg, rgba(255,253,248,.92) 0%, rgba(255,253,248,.82) 44%, rgba(255,253,248,.38) 100%),
+          url("/images/MountainRiverStones.png");
+        background-size: cover;
+        background-position: 62% center;
+      }
+
+      .hero { padding: 42px 0 62px; }
+
+      h1 { font-size: 3.25rem; }
+      .hero-copy { font-size: 1.02rem; }
+
+      .trust-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .alone-card {
+        padding: 16px;
+        border-radius: 18px;
+      }
+
+      .section-head { padding-top: 38px; }
+
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-card { min-height: auto; }
+
+      .resources-grid { grid-template-columns: 1fr; }
+
+      footer { grid-template-columns: 1fr; }
+
+      .copyright { text-align: left; }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">SL</div>
-        <div>
-          <div class="brand-title">Project Soft Landing</div>
-         <div class="brand-subtitle">
-    Private tools for recovery, sobriety, cravings, difficult conversations, and supporting someone you love through addiction.
-  </div>
+  <header class="site-header">
+    <div class="page">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="Project Soft Landing home">
+          <div class="logo">SL</div>
+          <div>
+            <div class="brand-name">Project Soft Landing</div>
+            <div class="brand-line">Small support when things feel too heavy.</div>
+          </div>
+        </a>
 
-  <nav class="tool-nav" aria-label="Primary tools">
-    <a href="/pause.html">The Pause</a>
-    <a href="/find-the-words.html">Find the Words</a>
-    <a href="/next-step.html">Next Step</a>
-    <a href="/help-me-help-them.html">Help Me Help Them</a>
-  </nav>
+        <div class="nav-links">
+          <a href="#tough-moments">Tough Moments</a>
+          <a href="#difficult-conversations">Difficult Conversations</a>
+          <a href="#sober-support">Sober Support</a>
+          <a href="#recovery-resources">Resources</a>
+          <a href="/about.html">About</a>
+          <a href="/faq.html">FAQ</a>
         </div>
-      </div>
-    </header>
-  </div>
 
-  <div class="hero-wrap">
-    <main class="page">
-      <section class="hero">
-        <div class="eyebrow">PRIVATE. FREE. NO ACCOUNT REQUIRED.</div>
+        <a class="nav-cta" href="#explore">Explore Tools</a>
+      </nav>
+    </div>
+  </header>
 
-        <h1>Small support when things feel too heavy.</h1>
+  <main>
+    <section class="hero-wrap">
+      <div class="page hero">
+        <h1>Calm support<br>when you need it <em>most.</em></h1>
+        <div class="hero-line"></div>
 
-        <p>
-          Choose the experience that fits what you're facing right now. Each one is private, free, and designed to help you take one small step forward.
-
-          Whether you're trying to stay sober, support someone you love, or simply make it through today, there's a place to begin.
+        <p class="hero-copy">
+          Free, private tools and resources for recovery, difficult moments, and supporting someone you love.
         </p>
 
-        <div class="actions">
-          <a class="button" href="#tools">Choose a Starting Point <span>→</span></a>
-          <a class="soft-link" href="#why">Why this exists</a>
+        <div class="trust-row" aria-label="Project Soft Landing principles">
+          <div class="trust-item">
+            <div class="trust-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M16 22v-6a8 8 0 0 1 16 0v6" />
+                <rect x="12" y="22" width="24" height="18" rx="3" />
+              </svg>
+            </div>
+            <div><strong>100% Private</strong>No account needed.</div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 39s-14-8-14-19a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 11-14 19-14 19Z" />
+              </svg>
+            </div>
+            <div><strong>Made for Real Life</strong>Practical. Compassionate.</div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M29 8c-7 2-13 8-13 17 0 7 5 12 12 12 8 0 13-7 13-14 0-6-4-11-12-15Z" />
+                <path d="M16 30c8-1 13-6 17-14" />
+              </svg>
+            </div>
+            <div><strong>Always Free</strong>No ads. Ever.</div>
+          </div>
         </div>
 
-        <div class="note">
-          <div class="note-icon">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <path d="M24 39V18" />
-              <path d="M24 29c-8 0-13-5-13-13 8 0 13 5 13 13Z" />
-              <path d="M24 24c7 0 11-4 11-11-7 0-11 4-11 11Z" />
-              <path d="M17 39h14" />
+        <div class="alone-card">
+          <div class="heart">
+            <svg viewBox="0 0 48 48">
+              <path d="M24 39s-14-8-14-19a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 11-14 19-14 19Z" />
             </svg>
           </div>
-          <span>Built for the moments when a softer landing would help.</span>
+          <div>
+            <strong>You are not alone.</strong>
+            <span>No matter what you are facing today, you deserve support.</span>
+          </div>
         </div>
-      </section>
-    </main>
-  </div>
-
-  <main class="page">
-    <section class="section-intro" id="tools">
-      <h2>Choose a starting point.</h2>
-      <p>
-        No accounts. No judgment. Just a few simple places to begin, depending on what feels hardest right now.
-      </p>
-    </section>
-
-    <section class="cards" aria-label="Project Soft Landing experiences">
-      <a class="card" href="/pause.html">
-        <div class="icon-circle">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M24 40V16" />
-            <path d="M24 30c-8 0-13-5-13-13 8 0 13 5 13 13Z" />
-            <path d="M24 25c7 0 11-4 11-11-7 0-11 4-11 11Z" />
-            <path d="M15 40h18" />
-          </svg>
-        </div>
-        <h3>The Pause</h3>
-        <div class="mini-line"></div>
-        <p>For when you need one quiet minute before your next decision.</p>
-        <span class="card-cta">Begin →</span>
-      </a>
-
-      <a class="card" href="/find-the-words.html">
-        <div class="icon-circle">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M12 16h24a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H23l-9 6v-6h-2a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4Z" />
-            <path d="M16 23h16" />
-            <path d="M16 28h10" />
-          </svg>
-        </div>
-        <h3>Find the Words</h3>
-        <div class="mini-line"></div>
-        <p>For when you know something needs to be said, but you do not know how to say it.</p>
-        <span class="card-cta">Write it →</span>
-      </a>
-
-      <a class="card" href="/next-step.html">
-        <div class="icon-circle">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M15 39c1-12 7-18 18-20" />
-            <path d="M33 19v-8l8 3-8 3" />
-            <path d="M13 39h23" />
-            <path d="M18 32c3 0 5 1 7 3" />
-          </svg>
-        </div>
-        <h3>Find My Next Step</h3>
-        <div class="mini-line"></div>
-        <p>For when you do not need a whole plan; you just need the next right move.</p>
-        <span class="card-cta">Get unstuck →</span>
-      </a>
-
-      <a class="card" href="/help-me-help-them.html">
-        <div class="icon-circle">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M24 39s-14-8-14-19a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 11-14 19-14 19Z" />
-            <path d="M24 21v8" />
-            <path d="M20 25h8" />
-          </svg>
-        </div>
-        <h3>Help Me Help Them</h3>
-        <div class="mini-line"></div>
-        <p>For when someone you care about is struggling and you are not sure what to do.</p>
-        <span class="card-cta">Support them →</span>
-      </a>
-    </section>
-
-    <section class="why" id="why">
-      <div>
-        <h2>Why this exists</h2>
-        <div class="mini-line"></div>
-      </div>
-
-      <div class="why-copy">
-        <p>
-          Recovery is not always shaped by dramatic turning points. Sometimes it is shaped quietly; late at night, after a hard conversation, during boredom, shame, uncertainty, exhaustion, or fear.
-        </p>
-
-        <p>
-          Project Soft Landing exists to create small moments of support for people in recovery, people trying to stay sober, and the family and friends trying to love them well.
-        </p>
       </div>
     </section>
 
-    <footer>
-  <div class="footer-logo">SL</div>
+    <section class="page" id="explore">
+      <div class="section-head">
+        <h2>Explore by Category</h2>
+        <p>Every experience is designed for a specific moment. Start with the one that feels closest to what you are facing today.</p>
+        <div class="section-mini-line"></div>
+      </div>
 
-  <div class="footer-content">
+      <div class="category-grid">
+        <article class="category-card tough" id="tough-moments">
+          <div class="category-top">
+            <div class="cat-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 40V16" />
+                <path d="M24 30c-8 0-13-5-13-13 8 0 13 5 13 13Z" />
+                <path d="M24 25c7 0 11-4 11-11-7 0-11 4-11 11Z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Tough Moments</h3>
+              <p class="desc">For the moments that feel overwhelming.</p>
+            </div>
+          </div>
 
-    <div class="footer-brand">
-      Project Soft Landing
-    </div>
+          <div class="tool-list">
+            <a class="tool-link" href="/pause.html"><span>The Pause</span><span class="arrow">›</span></a>
+            <a class="tool-link" href="/next-step.html"><span>Find My Next Step</span><span class="arrow">›</span></a>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">I Messed Up</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">I Think I’m Going to Relapse</span></div>
+          </div>
 
-    <div class="footer-links">
-      <a href="/">Home</a> ·
-      <a href="/about.html">About</a> ·
-      <a href="/faq.html">FAQ</a> ·
-      <a href="/crisis-resources.html">Crisis Resources</a> ·
-      <a href="/privacy.html">Privacy</a> ·
-      <a href="/terms.html">Terms</a>
-    </div>
+          <a class="category-cta" href="#tough-moments">Explore Tough Moments →</a>
+        </article>
 
-    <div class="footer-built">
-      Built with care.
-    </div>
+        <article class="category-card convo" id="difficult-conversations">
+          <div class="category-top">
+            <div class="cat-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M12 16h24a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H23l-9 6v-6h-2a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4Z" />
+                <path d="M16 23h16" />
+                <path d="M16 28h10" />
+              </svg>
+            </div>
+            <div>
+              <h3>Difficult Conversations</h3>
+              <p class="desc">Finding calm, honest words when they matter most.</p>
+            </div>
+          </div>
 
-  </div>
-</footer>
-    
+          <div class="tool-list">
+            <a class="tool-link" href="/find-the-words.html"><span>Find the Words</span><span class="arrow">›</span></a>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Tell My Sponsor</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Before I Send This</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Repair the Conversation</span></div>
+          </div>
+
+          <a class="category-cta" href="#difficult-conversations">Explore Conversations →</a>
+        </article>
+
+        <article class="category-card support" id="sober-support">
+          <div class="category-top">
+            <div class="cat-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 39s-14-8-14-19a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 11-14 19-14 19Z" />
+                <path d="M24 21v8" />
+                <path d="M20 25h8" />
+              </svg>
+            </div>
+            <div>
+              <h3>Sober Support</h3>
+              <p class="desc">Helping someone you love without carrying it alone.</p>
+            </div>
+          </div>
+
+          <div class="tool-list">
+            <a class="tool-link" href="/help-me-help-them.html"><span>Help Me Help Them</span><span class="arrow">›</span></a>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Loved One Relapsed</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Healthy Boundaries</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Am I Enabling?</span></div>
+          </div>
+
+          <a class="category-cta" href="#sober-support">Explore Sober Support →</a>
+        </article>
+
+        <article class="category-card self" id="understanding-myself">
+          <div class="category-top">
+            <div class="cat-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M18 39c-5-3-8-8-8-15 0-8 6-15 14-15s14 7 14 15c0 7-3 12-8 15" />
+                <path d="M19 24h10" />
+                <path d="M24 16v16" />
+                <path d="M18 32h12" />
+              </svg>
+            </div>
+            <div>
+              <h3>Understanding Myself</h3>
+              <p class="desc">Understanding patterns instead of judging yourself.</p>
+            </div>
+          </div>
+
+          <div class="tool-list">
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Trigger Journal</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Check My Thinking</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">What Am I Feeling?</span></div>
+          </div>
+
+          <a class="category-cta" href="#understanding-myself">Explore Understanding Myself →</a>
+        </article>
+
+        <article class="category-card growth" id="recovery-growth">
+          <div class="category-top">
+            <div class="cat-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 40V17" />
+                <path d="M24 29c-7 0-11-4-11-11 7 0 11 4 11 11Z" />
+                <path d="M24 25c7 0 11-4 11-11-7 0-11 4-11 11Z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Recovery & Growth</h3>
+              <p class="desc">Small habits that make tomorrow easier.</p>
+            </div>
+          </div>
+
+          <div class="tool-list">
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Recovery Routine</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Daily Reflection</span></div>
+            <div class="tool-coming"><span class="badge">Coming Soon</span><span class="coming-name">Celebrate Progress</span></div>
+          </div>
+
+          <a class="category-cta" href="#recovery-growth">Explore Recovery & Growth →</a>
+        </article>
+
+        <article class="category-card resources" id="recovery-resources">
+          <div class="category-top">
+            <div class="cat-icon">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M10 12h12a6 6 0 0 1 6 6v22H16a6 6 0 0 1-6-6V12Z" />
+                <path d="M28 18a6 6 0 0 1 6-6h10v28H34a6 6 0 0 0-6 6V18Z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Recovery Resources</h3>
+              <p class="desc">Trusted resources to learn, connect, and find support.</p>
+            </div>
+          </div>
+
+          <div class="resources-grid">
+            <a class="resource-chip" href="https://www.aa.org/find-aa" target="_blank" rel="noopener">AA Meetings</a>
+            <a class="resource-chip" href="https://www.na.org/meetingsearch/" target="_blank" rel="noopener">NA Meetings</a>
+            <a class="resource-chip" href="https://smartrecovery.org/meeting" target="_blank" rel="noopener">SMART Recovery</a>
+            <a class="resource-chip" href="https://www.aa.org/the-big-book" target="_blank" rel="noopener">The Big Book</a>
+            <a class="resource-chip" href="https://www.aa.org/daily-reflections" target="_blank" rel="noopener">Daily Reflections</a>
+            <a class="resource-chip" href="/crisis-resources.html">988 & Hotlines</a>
+            <a class="resource-chip" href="https://findtreatment.gov/" target="_blank" rel="noopener">Treatment Finder</a>
+            <a class="resource-chip" href="/faq.html">Recovery Concepts</a>
+            <a class="resource-chip" href="/faq.html">Family Support</a>
+            <a class="resource-chip" href="/faq.html">Sponsors</a>
+          </div>
+
+          <a class="category-cta" href="#recovery-resources">Explore Resources →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="why-panel" id="why">
+        <div class="why-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M10 34c7-12 15-8 28-20" />
+            <path d="M12 38h24" />
+            <path d="M24 8v7" />
+            <path d="M14 15l4 4" />
+            <path d="M34 15l-4 4" />
+          </svg>
+        </div>
+
+        <div>
+          <h2>Why this exists</h2>
+          <p>Because recovery is not a straight line. It is a series of moments. The good, the hard, the uncertain.</p>
+          <p>Project Soft Landing was created to give you tools, resources, and reminders that you do not have to figure it all out alone.</p>
+          <strong>We are glad you are here.</strong>
+        </div>
+
+        <div class="quote-card">
+          <div class="quote-mark">“</div>
+          <p>Sometimes the smallest support makes the biggest difference.<br><br>— Keep coming back.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="page">
+    <div class="footer-brand-block">
+      <div class="footer-logo">SL</div>
+      <div>
+        <div class="footer-title">Project Soft Landing</div>
+        <div class="footer-small">Small support when things feel too heavy.<br>Always free. Always private.</div>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="#tough-moments">Tough Moments</a>
+      <a href="#difficult-conversations">Difficult Conversations</a>
+      <a href="#sober-support">Sober Support</a>
+      <a href="#understanding-myself">Understanding Myself</a>
+      <a href="#recovery-growth">Recovery & Growth</a>
+      <a href="#recovery-resources">Recovery Resources</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Information</h4>
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/crisis-resources.html">Crisis Resources</a>
+    </div>
+
+    <div class="crisis-box">
+      <strong>If you are in crisis</strong>
+      <p>Call or text <strong>988</strong> if you are in the U.S. and need immediate mental health support. You are not alone.</p>
+    </div>
+
+    <div class="copyright">© 2026 Project Soft Landing. All rights reserved.</div>
+  </footer>
 </body>
 </html>
