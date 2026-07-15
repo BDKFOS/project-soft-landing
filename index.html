@@ -63,7 +63,8 @@
       {"@type": "ListItem", "position": 3, "name": "Sober Support", "url": "https://projectsoftlanding.com/#sober-support"},
       {"@type": "ListItem", "position": 4, "name": "Understanding Myself", "url": "https://projectsoftlanding.com/#understanding-myself"},
       {"@type": "ListItem", "position": 5, "name": "Recovery & Growth", "url": "https://projectsoftlanding.com/#recovery-growth"},
-      {"@type": "ListItem", "position": 6, "name": "Recovery Resources", "url": "https://projectsoftlanding.com/#recovery-resources"}
+      {"@type": "ListItem", "position": 6, "name": "Recovery Resources", "url": "https://projectsoftlanding.com/#recovery-resources"},
+      {"@type": "ListItem", "position": 7, "name": "Addiction and Recovery Guides", "url": "https://projectsoftlanding.com/guides/"}
     ]
   }
   </script>
@@ -501,6 +502,173 @@
       color: var(--sage-dark);
     }
 
+
+    .guides-section {
+      padding: 10px 0 72px;
+    }
+
+    .guides-heading-row {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+
+    .guides-heading-copy {
+      max-width: 720px;
+    }
+
+    .guides-kicker {
+      color: var(--sage-dark);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      margin: 0 0 10px;
+    }
+
+    .guides-heading-row h2 {
+      font-family: "Lora", serif;
+      font-size: clamp(2.25rem, 4vw, 3.3rem);
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      margin: 0 0 12px;
+    }
+
+    .guides-heading-row p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .view-all-guides {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 13px 18px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,253,248,.82);
+      color: var(--sage-dark);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(56, 48, 39, .05);
+    }
+
+    .view-all-guides:hover {
+      background: var(--sage-soft);
+    }
+
+    .home-guide-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+    }
+
+    .home-guide-card {
+      grid-column: span 2;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(255,253,248,.94);
+      box-shadow: 0 18px 50px rgba(56,48,39,.07);
+    }
+
+    .home-guide-card:nth-child(4),
+    .home-guide-card:nth-child(5) {
+      grid-column: span 3;
+      min-height: 270px;
+    }
+
+    .home-guide-card::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -55px;
+      top: -60px;
+      border-radius: 50%;
+      background: var(--sage-soft);
+      opacity: .72;
+      pointer-events: none;
+    }
+
+    .home-guide-card:nth-child(2)::before { background: var(--blue-soft); }
+    .home-guide-card:nth-child(3)::before { background: var(--rust-soft); }
+    .home-guide-card:nth-child(4)::before { background: var(--gold-soft); }
+    .home-guide-card:nth-child(5)::before { background: var(--plum-soft); }
+
+    .guide-card-label {
+      position: relative;
+      z-index: 1;
+      color: var(--sage-dark);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .home-guide-card:nth-child(2) .guide-card-label { color: var(--blue); }
+    .home-guide-card:nth-child(3) .guide-card-label { color: var(--rust); }
+    .home-guide-card:nth-child(4) .guide-card-label { color: var(--gold); }
+    .home-guide-card:nth-child(5) .guide-card-label { color: var(--plum); }
+
+    .home-guide-card h3 {
+      position: relative;
+      z-index: 1;
+      font-family: "Lora", serif;
+      font-size: 1.55rem;
+      line-height: 1.12;
+      letter-spacing: -.042em;
+      margin: 0 0 12px;
+    }
+
+    .home-guide-card h3 a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .home-guide-card h3 a:hover {
+      color: var(--sage-dark);
+    }
+
+    .home-guide-card p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.58;
+      margin: 0 0 20px;
+    }
+
+    .home-guide-link {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      color: var(--sage-dark);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .home-guide-card:nth-child(2) .home-guide-link { color: var(--blue); }
+    .home-guide-card:nth-child(3) .home-guide-link { color: var(--rust); }
+    .home-guide-card:nth-child(4) .home-guide-link { color: var(--gold); }
+    .home-guide-card:nth-child(5) .home-guide-link { color: var(--plum); }
+
     .why-panel {
       margin: 4px 0 72px;
       border: 1px solid var(--border);
@@ -685,7 +853,174 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .why-panel {
+  
+    .guides-section {
+      padding: 10px 0 72px;
+    }
+
+    .guides-heading-row {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+
+    .guides-heading-copy {
+      max-width: 720px;
+    }
+
+    .guides-kicker {
+      color: var(--sage-dark);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      margin: 0 0 10px;
+    }
+
+    .guides-heading-row h2 {
+      font-family: "Lora", serif;
+      font-size: clamp(2.25rem, 4vw, 3.3rem);
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      margin: 0 0 12px;
+    }
+
+    .guides-heading-row p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .view-all-guides {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 13px 18px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,253,248,.82);
+      color: var(--sage-dark);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(56, 48, 39, .05);
+    }
+
+    .view-all-guides:hover {
+      background: var(--sage-soft);
+    }
+
+    .home-guide-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+    }
+
+    .home-guide-card {
+      grid-column: span 2;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(255,253,248,.94);
+      box-shadow: 0 18px 50px rgba(56,48,39,.07);
+    }
+
+    .home-guide-card:nth-child(4),
+    .home-guide-card:nth-child(5) {
+      grid-column: span 3;
+      min-height: 270px;
+    }
+
+    .home-guide-card::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -55px;
+      top: -60px;
+      border-radius: 50%;
+      background: var(--sage-soft);
+      opacity: .72;
+      pointer-events: none;
+    }
+
+    .home-guide-card:nth-child(2)::before { background: var(--blue-soft); }
+    .home-guide-card:nth-child(3)::before { background: var(--rust-soft); }
+    .home-guide-card:nth-child(4)::before { background: var(--gold-soft); }
+    .home-guide-card:nth-child(5)::before { background: var(--plum-soft); }
+
+    .guide-card-label {
+      position: relative;
+      z-index: 1;
+      color: var(--sage-dark);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .home-guide-card:nth-child(2) .guide-card-label { color: var(--blue); }
+    .home-guide-card:nth-child(3) .guide-card-label { color: var(--rust); }
+    .home-guide-card:nth-child(4) .guide-card-label { color: var(--gold); }
+    .home-guide-card:nth-child(5) .guide-card-label { color: var(--plum); }
+
+    .home-guide-card h3 {
+      position: relative;
+      z-index: 1;
+      font-family: "Lora", serif;
+      font-size: 1.55rem;
+      line-height: 1.12;
+      letter-spacing: -.042em;
+      margin: 0 0 12px;
+    }
+
+    .home-guide-card h3 a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .home-guide-card h3 a:hover {
+      color: var(--sage-dark);
+    }
+
+    .home-guide-card p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.58;
+      margin: 0 0 20px;
+    }
+
+    .home-guide-link {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      color: var(--sage-dark);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .home-guide-card:nth-child(2) .home-guide-link { color: var(--blue); }
+    .home-guide-card:nth-child(3) .home-guide-link { color: var(--rust); }
+    .home-guide-card:nth-child(4) .home-guide-link { color: var(--gold); }
+    .home-guide-card:nth-child(5) .home-guide-link { color: var(--plum); }
+
+    .why-panel {
         grid-template-columns: 1fr;
       }
 
@@ -748,6 +1083,22 @@
 
       .section-head { padding-top: 38px; }
 
+      .guides-heading-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .view-all-guides { width: 100%; }
+
+      .home-guide-grid { grid-template-columns: 1fr; }
+
+      .home-guide-card,
+      .home-guide-card:nth-child(4),
+      .home-guide-card:nth-child(5) {
+        grid-column: auto;
+        min-height: auto;
+      }
+
       .category-grid {
         grid-template-columns: 1fr;
       }
@@ -780,6 +1131,7 @@
           <a href="#difficult-conversations">Difficult Conversations</a>
           <a href="#sober-support">Sober Support</a>
           <a href="#recovery-resources">Resources</a>
+          <a href="/guides/">Guides</a>
           <a href="/about.html">About</a>
           <a href="/faq.html">FAQ</a>
         </div>
@@ -1008,6 +1360,98 @@
       </div>
     </section>
 
+
+    <section class="page guides-section" id="guides">
+      <div class="guides-heading-row">
+        <div class="guides-heading-copy">
+          <p class="guides-kicker">Practical guidance</p>
+          <h2>Addiction &amp; Recovery Guides</h2>
+          <p>
+            Clear, compassionate answers for relapse, boundaries, trust, and supporting someone you love—written for the moments when you need more than a quick answer.
+          </p>
+        </div>
+
+        <a class="view-all-guides" href="/guides/">View All Guides →</a>
+      </div>
+
+      <div class="home-guide-grid">
+        <article class="home-guide-card">
+          <div class="guide-card-label">Relapse Support</div>
+          <h3>
+            <a href="/guides/what-to-say-to-someone-who-relapsed.html">
+              What to Say to Someone Who Relapsed
+            </a>
+          </h3>
+          <p>
+            Learn how to respond without increasing shame, what to avoid saying, and how to encourage the next healthy step.
+          </p>
+          <a class="home-guide-link" href="/guides/what-to-say-to-someone-who-relapsed.html">
+            Read the guide →
+          </a>
+        </article>
+
+        <article class="home-guide-card">
+          <div class="guide-card-label">Helping Someone</div>
+          <h3>
+            <a href="/guides/how-to-help-someone-with-an-addiction.html">
+              How to Help Someone With an Addiction
+            </a>
+          </h3>
+          <p>
+            Support someone with compassion while encouraging recovery, avoiding harmful patterns, and protecting your own well-being.
+          </p>
+          <a class="home-guide-link" href="/guides/how-to-help-someone-with-an-addiction.html">
+            Read the guide →
+          </a>
+        </article>
+
+        <article class="home-guide-card">
+          <div class="guide-card-label">Healthy Support</div>
+          <h3>
+            <a href="/guides/what-is-enabling.html">
+              What Is Enabling?
+            </a>
+          </h3>
+          <p>
+            Understand the difference between helping the person and unintentionally protecting the addiction from consequences.
+          </p>
+          <a class="home-guide-link" href="/guides/what-is-enabling.html">
+            Read the guide →
+          </a>
+        </article>
+
+        <article class="home-guide-card">
+          <div class="guide-card-label">Boundaries</div>
+          <h3>
+            <a href="/guides/setting-boundaries-with-someone-who-has-an-addiction.html">
+              How to Set Boundaries With Someone Who Has an Addiction
+            </a>
+          </h3>
+          <p>
+            Find clear examples for money, housing, communication, children, driving, and safety—without turning compassion into surrender.
+          </p>
+          <a class="home-guide-link" href="/guides/setting-boundaries-with-someone-who-has-an-addiction.html">
+            Read the guide →
+          </a>
+        </article>
+
+        <article class="home-guide-card">
+          <div class="guide-card-label">Relationships</div>
+          <h3>
+            <a href="/guides/how-to-rebuild-trust-after-addiction.html">
+              How to Rebuild Trust After Addiction
+            </a>
+          </h3>
+          <p>
+            Learn how trust returns through honesty, accountability, consistent action, and realistic expectations for everyone involved.
+          </p>
+          <a class="home-guide-link" href="/guides/how-to-rebuild-trust-after-addiction.html">
+            Read the guide →
+          </a>
+        </article>
+      </div>
+    </section>
+
     <section class="page">
       <div class="why-panel" id="why">
         <div class="why-icon">
@@ -1052,6 +1496,7 @@
       <a href="#understanding-myself">Understanding Myself</a>
       <a href="#recovery-growth">Recovery & Growth</a>
       <a href="#recovery-resources">Recovery Resources</a>
+      <a href="/guides/">Addiction &amp; Recovery Guides</a>
     </div>
 
     <div class="footer-col">
